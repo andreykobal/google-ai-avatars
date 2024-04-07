@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Google AI project.sln"
+    "dotnet.defaultSolution": "google-ainft-avatar.sln"
 }
