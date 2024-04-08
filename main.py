@@ -1,6 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 import requests
 import subprocess
+from google.cloud import texttospeech
+import os
+import base64
+
 
 app = Flask(__name__)
 
@@ -58,6 +62,25 @@ def generate_poem():
         return jsonify({"response": poem_content})
     else:
         return jsonify({"error": "Failed to generate poem"}), response.status_code
+
+
+@app.route('/synthesize_speech_base64', methods=['POST'])
+def synthesize_speech_base64():
+    data = request.get_json()
+    text = data.get('text')
+    
+    client = texttospeech.TextToSpeechClient()
+    synthesis_input = texttospeech.SynthesisInput(text=text)
+    voice = texttospeech.VoiceSelectionParams(language_code="en-US", ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL)
+    # Use LINEAR16 to get WAV format audio
+    audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.LINEAR16)
+    
+    response = client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
+    
+    # Encode the WAV audio content to Base64
+    audio_content_base64 = base64.b64encode(response.audio_content).decode('utf-8')
+    
+    return jsonify({"audioContentBase64": audio_content_base64})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5002)
