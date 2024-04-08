@@ -2,11 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+using System;
 
 public class TextGeneratorClient : MonoBehaviour
 {
     public InputField promptInputField; // Assign in the Inspector
     public Button sendPromptButton; // Assign in the Inspector
+
+    public TextToSpeechClient textToSpeechClient;
+
 
     private readonly string generateUrl = "http://localhost:5002/generate"; // Update with your server URL
 
@@ -50,7 +54,16 @@ public class TextGeneratorClient : MonoBehaviour
         {
             Debug.Log("Received: " + uwr.downloadHandler.text);
             // Parse the JSON response and use the 'response' field as needed
+            var jsonResponse = JsonUtility.FromJson<Response>(uwr.downloadHandler.text);
+            Debug.Log("Response: " + jsonResponse.response);
+            textToSpeechClient.CallSynthesizeSpeech(jsonResponse.response);
         }
+    }
+
+    [Serializable]
+    private class Response
+    {
+        public string response;
     }
 
     private void UseRecognizedTextAsPrompt(string recognizedText)

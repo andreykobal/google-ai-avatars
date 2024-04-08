@@ -10,7 +10,7 @@ public class TextToSpeechClient : MonoBehaviour
     void Start()
     {
         // Example call to synthesize speech from text and play it
-        StartCoroutine(SynthesizeSpeech("Hello, this is a test of the speech synthesis."));
+        //StartCoroutine(SynthesizeSpeech("Hello, this is a test of the speech synthesis."));
     }
 
     IEnumerator SynthesizeSpeech(string textToSynthesize)
@@ -39,6 +39,11 @@ public class TextToSpeechClient : MonoBehaviour
             audioSource.clip = audioClip;
             audioSource.Play();
         }
+    }
+
+    public void CallSynthesizeSpeech(string textToSynthesize)
+    {
+        StartCoroutine(SynthesizeSpeech(textToSynthesize));
     }
 
     [Serializable]

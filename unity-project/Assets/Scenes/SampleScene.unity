@@ -1191,6 +1191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptInputField: {fileID: 446245802}
   sendPromptButton: {fileID: 109294653}
+  textToSpeechClient: {fileID: 371437443}
 --- !u!4 &940537731
 Transform:
   m_ObjectHideFlags: 0
