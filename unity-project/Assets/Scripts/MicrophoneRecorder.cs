@@ -37,6 +37,10 @@ namespace uMicrophoneWebGL.Samples
 
         public SpeechRecognitionManager speechRecognitionManager; // Assign this from the inspector
 
+        [Header("Silence Detection")]
+        public float silenceThreshold = 0.02f; // Volume level below which is considered silence
+        public float silenceDuration = 2.0f; // Duration in seconds for which silence must persist to stop recording
+        private float silenceTimer = 0f; // Timer to track silence duration
 
 
         void Update()
@@ -98,6 +102,10 @@ namespace uMicrophoneWebGL.Samples
 
         private void Begin()
         {
+            // Reset silence timer on begin
+            silenceTimer = 0f;
+
+
             if (deviceDropdown)
             {
                 microphoneWebGL.micIndex = deviceDropdown.value;
@@ -141,14 +149,45 @@ namespace uMicrophoneWebGL.Samples
             }
 
         }
-
         public void OnData(float[] input)
         {
             if (input == null) return;
+
+            if (IsSilent(input))
+            {
+                silenceTimer += (float)input.Length / microphoneWebGL.selectedDevice.sampleRate;
+                Debug.Log("Silence detected. Timer: " + silenceTimer); // Debugging log
+
+                if (silenceTimer >= silenceDuration)
+                {
+                    Debug.Log("Silence duration exceeded. Stopping recording."); // Debugging log
+                    ToggleRecord(); // Stop recording if silence persists
+                    return; // Exit to prevent adding silent data
+                }
+            }
+            else
+            {
+                Debug.Log("Noise detected. Resetting silence timer."); // Debugging log
+                silenceTimer = 0f; // Reset silence timer if there's noise
+            }
+
             int n = input.Length;
-            if (_bufferSize + n >= _buffer.Length) return;
-            System.Array.Copy(input, 0, _buffer, _bufferSize, n);
+            if (_bufferSize + n > _buffer.Length) return;
+            Array.Copy(input, 0, _buffer, _bufferSize, n);
             _bufferSize += n;
+        }
+
+        private bool IsSilent(float[] buffer)
+        {
+            float sum = 0f;
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                sum += buffer[i] * buffer[i]; // Summing squares of samples
+            }
+            float rms = Mathf.Sqrt(sum / buffer.Length); // Root mean square volume
+            Debug.Log("RMS Volume: " + rms); // Debugging log
+
+            return rms < silenceThreshold;
         }
 
         public void OnDeviceListUpdated(List<Device> devices)
