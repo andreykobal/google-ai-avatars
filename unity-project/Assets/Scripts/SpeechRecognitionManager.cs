@@ -16,38 +16,38 @@ public class SpeechRecognitionManager : MonoBehaviour
     public static event RecognizedSpeechAction OnRecognizedSpeech;
 
 
-    void Start()
-    {
-        yourButton.onClick.AddListener(ToggleRecording);
-    }
+    // void Start()
+    // {
+    //     yourButton.onClick.AddListener(ToggleRecording);
+    // }
 
-    void ToggleRecording()
-    {
-        if (!isRecording)
-        {
-            // Start recording
-            isRecording = true;
-            recordedClip = Microphone.Start(null, false, 10, SAMPLE_RATE);
-            Debug.Log("Recording started...");
-        }
-        else
-        {
-            // Stop recording and send for recognition
-            isRecording = false;
-            Microphone.End(null);
-            Debug.Log("Recording stopped. Sending for recognition...");
-            SendAudioForRecognition();
-        }
-    }
+    // void ToggleRecording()
+    // {
+    //     if (!isRecording)
+    //     {
+    //         // Start recording
+    //         isRecording = true;
+    //         recordedClip = Microphone.Start(null, false, 10, SAMPLE_RATE);
+    //         Debug.Log("Recording started...");
+    //     }
+    //     else
+    //     {
+    //         // Stop recording and send for recognition
+    //         isRecording = false;
+    //         Microphone.End(null);
+    //         Debug.Log("Recording stopped. Sending for recognition...");
+    //         SendAudioForRecognition(recordedClip);
+    //     }
+    // }
 
-    void SendAudioForRecognition()
+    public void SendAudioForRecognition(AudioClip clip)
     {
         // Assuming you have already captured the audio samples...
-        float[] samples = new float[recordedClip.samples * recordedClip.channels];
-        recordedClip.GetData(samples, 0);
+        float[] samples = new float[clip.samples * clip.channels];
+        clip.GetData(samples, 0);
 
         // Convert to WAV format and then to Base64
-        byte[] wavData = WavUtility.FromSamples(samples, recordedClip.channels, SAMPLE_RATE);
+        byte[] wavData = WavUtility.FromSamples(samples, clip.channels, SAMPLE_RATE);
         string audioContentBase64 = Convert.ToBase64String(wavData);
 
         StartCoroutine(SendRequestToServer(audioContentBase64));

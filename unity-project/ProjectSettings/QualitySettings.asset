@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 2
+  m_CurrentQuality: 0
   m_QualitySettings:
   - serializedVersion: 2
     name: Performant
@@ -27,6 +27,7 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
     vSyncCount: 0
+    realtimeGICPUUsage: 25
     lodBias: 0.4
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -40,8 +41,7 @@ QualitySettings:
     asyncUploadBufferSize: 16
     asyncUploadPersistentBuffer: 1
     resolutionScalingFixedDPIFactor: 1
-    customRenderPipeline: {fileID: 11400000, guid: d0e2fc18fe036412f8223b3b3d9ad574,
-      type: 2}
+    customRenderPipeline: {fileID: 0}
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Balanced
@@ -64,6 +64,7 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
     vSyncCount: 1
+    realtimeGICPUUsage: 25
     lodBias: 1
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -101,6 +102,7 @@ QualitySettings:
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     vSyncCount: 1
+    realtimeGICPUUsage: 25
     lodBias: 2
     maximumLODLevel: 0
     streamingMipmapsActive: 0
@@ -128,8 +130,8 @@ QualitySettings:
     PS5: 2
     Server: 0
     Stadia: 2
-    Standalone: 2
-    WebGL: 1
+    Standalone: 0
+    WebGL: 0
     Windows Store Apps: 2
     XboxOne: 2
     iPhone: 1

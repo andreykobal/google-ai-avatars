@@ -1,12 +1,14 @@
 from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS 
 import requests
 import subprocess
 from google.cloud import texttospeech, speech
 import os
 import base64
 
-
 app = Flask(__name__)
+CORS(app)  # Enable CORS for the entire app
+
 
 def get_access_token():
     """Runs the gcloud command to get the access token and returns it."""
