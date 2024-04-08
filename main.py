@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, send_file
 import requests
 import subprocess
-from google.cloud import texttospeech
+from google.cloud import texttospeech, speech
 import os
 import base64
 
@@ -21,7 +21,7 @@ def get_access_token():
         return None
 
 @app.route('/generate', methods=['POST'])
-def generate_poem():
+def generate():
     # Extract prompt from incoming request
     data = request.get_json()
     prompt = data.get('prompt')
@@ -82,5 +82,36 @@ def synthesize_speech_base64():
     
     return jsonify({"audioContentBase64": audio_content_base64})
 
+@app.route('/recognize_speech', methods=['POST'])
+def recognize_speech():
+    data = request.get_json()
+    audio_content_base64 = data.get('audioContentBase64')
+    
+    audio_content = base64.b64decode(audio_content_base64)
+
+    client = speech.SpeechClient()
+    audio = speech.RecognitionAudio(content=audio_content)
+    # Ensure this matches the sample rate of your audio
+    config = speech.RecognitionConfig(
+        encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+        sample_rate_hertz=16000,  # Adjusted to likely sample rate
+        language_code="en-US"
+    )
+
+    try:
+        response = client.recognize(config=config, audio=audio)
+        if response.results:
+            recognized_text = response.results[0].alternatives[0].transcript
+        else:
+            recognized_text = "No speech recognized."
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    return jsonify({"recognizedText": recognized_text})
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5002)
+
+
