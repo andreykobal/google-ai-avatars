@@ -12,8 +12,15 @@ public class TextGeneratorClient : MonoBehaviour
 
     public TextToSpeechClient textToSpeechClient;
 
+    public string characterName = "Carolina Bela";
+    public string characterBio = "Carolina is from Brazil, 28 years old, she is a good friend and a warm hearted lover.";
+
+
 
     private readonly string generateUrl = "http://localhost:5002/generate"; // Update with your server URL
+
+    private string conversationContext = "";
+    private const int maxContextLength = 2048; // Adjust based on your backend model's limit
 
     void OnEnable()
     {
@@ -36,9 +43,16 @@ public class TextGeneratorClient : MonoBehaviour
         });
     }
 
-    IEnumerator SendPromptAndGetResponse(string prompt)
+    IEnumerator SendPromptAndGetResponse(string userPrompt) // Use 'userPrompt' for clarity
     {
-        var requestJson = "{\"prompt\":\"" + prompt + "\"}";
+        // Include the conversation context with the new prompt
+        string fullPrompt = $"You are {characterName}, your bio: {characterBio}. Behave like a human, respond to user prompts considering the conversation context: {conversationContext} User: {userPrompt} {characterName}:";
+
+        fullPrompt = Regex.Replace(fullPrompt, @"\r\n?|\n", " ");
+
+        Debug.Log("Sending prompt: " + fullPrompt);
+
+        var requestJson = "{\"prompt\":\"" + fullPrompt + "\"}";
         var uwr = new UnityWebRequest(generateUrl, "POST");
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(requestJson);
         uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
@@ -54,13 +68,14 @@ public class TextGeneratorClient : MonoBehaviour
         else
         {
             Debug.Log("Received: " + uwr.downloadHandler.text);
-            // Parse the JSON response and use the 'response' field as needed
-            var jsonResponse = new Response();
-            JsonUtility.FromJsonOverwrite(uwr.downloadHandler.text, jsonResponse);
+            var jsonResponse = JsonUtility.FromJson<Response>(uwr.downloadHandler.text);
             Debug.Log("Response: " + jsonResponse.response);
 
+            // Append both the user's prompt and AI's response to the conversation context
+            conversationContext += $"User: {userPrompt} {characterName}: {jsonResponse.response}";
+            TrimConversationContext(); // Ensure the conversation context does not exceed the maximum length
+
             // Replace newline characters with a placeholder
-            // Use regex to replace newline characters with spaces and preserve specific punctuation marks
             string responseWithPlaceholder = Regex.Replace(jsonResponse.response, @"\n", " ");
             responseWithPlaceholder = Regex.Replace(responseWithPlaceholder, @"[^\w\s.,!?]", "");
 
@@ -68,6 +83,24 @@ public class TextGeneratorClient : MonoBehaviour
             textToSpeechClient.CallSynthesizeSpeech(responseWithPlaceholder);
         }
     }
+
+
+    private void TrimConversationContext()
+    {
+        while (conversationContext.Length > maxContextLength)
+        {
+            int firstNewLineIndex = conversationContext.IndexOf('\n');
+            if (firstNewLineIndex >= 0)
+            {
+                conversationContext = conversationContext.Substring(firstNewLineIndex + 1);
+            }
+            else
+            {
+                break; // Break the loop if no newline character is found
+            }
+        }
+    }
+
 
     [Serializable]
     private class Response

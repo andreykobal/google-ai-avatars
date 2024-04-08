@@ -38,7 +38,7 @@ namespace uMicrophoneWebGL.Samples
         public SpeechRecognitionManager speechRecognitionManager; // Assign this from the inspector
 
         [Header("Silence Detection")]
-        public float silenceThreshold = 0.02f; // Volume level below which is considered silence
+        public float silenceThreshold = 0.001f; // Volume level below which is considered silence
         public float silenceDuration = 2.0f; // Duration in seconds for which silence must persist to stop recording
         private float silenceTimer = 0f; // Timer to track silence duration
 
