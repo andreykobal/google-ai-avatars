@@ -33,7 +33,7 @@ def generate():
         ],
         "parameters": {
             "temperature": 0.8,
-            "maxOutputTokens": 100,
+            "maxOutputTokens": 1024,
             "topP": 0.9,
             "topK": 40
         }

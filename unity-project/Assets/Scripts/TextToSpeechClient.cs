@@ -43,6 +43,8 @@ public class TextToSpeechClient : MonoBehaviour
 
     public void CallSynthesizeSpeech(string textToSynthesize)
     {
+        Debug.Log("Synthesizing speech for: " + textToSynthesize);
+
         StartCoroutine(SynthesizeSpeech(textToSynthesize));
     }
 

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
 using System;
+using System.Text.RegularExpressions;
 
 public class TextGeneratorClient : MonoBehaviour
 {
@@ -54,9 +55,17 @@ public class TextGeneratorClient : MonoBehaviour
         {
             Debug.Log("Received: " + uwr.downloadHandler.text);
             // Parse the JSON response and use the 'response' field as needed
-            var jsonResponse = JsonUtility.FromJson<Response>(uwr.downloadHandler.text);
+            var jsonResponse = new Response();
+            JsonUtility.FromJsonOverwrite(uwr.downloadHandler.text, jsonResponse);
             Debug.Log("Response: " + jsonResponse.response);
-            textToSpeechClient.CallSynthesizeSpeech(jsonResponse.response);
+
+            // Replace newline characters with a placeholder
+            // Use regex to replace newline characters with spaces and preserve specific punctuation marks
+            string responseWithPlaceholder = Regex.Replace(jsonResponse.response, @"\n", " ");
+            responseWithPlaceholder = Regex.Replace(responseWithPlaceholder, @"[^\w\s.,!?]", "");
+
+            // Call the text to speech client with the response
+            textToSpeechClient.CallSynthesizeSpeech(responseWithPlaceholder);
         }
     }
 
