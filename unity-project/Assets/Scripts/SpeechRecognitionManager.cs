@@ -11,6 +11,11 @@ public class SpeechRecognitionManager : MonoBehaviour
     private AudioClip recordedClip;
     private const int SAMPLE_RATE = 16000; // Ensure this matches your server's expected sample rate
 
+    // Define a delegate and an event
+    public delegate void RecognizedSpeechAction(string recognizedText);
+    public static event RecognizedSpeechAction OnRecognizedSpeech;
+
+
     void Start()
     {
         yourButton.onClick.AddListener(ToggleRecording);
@@ -67,7 +72,16 @@ public class SpeechRecognitionManager : MonoBehaviour
         else
         {
             Debug.Log("Recognized Text: " + uwr.downloadHandler.text);
-            // Parse JSON and use the recognized text as needed
+            // Extract the recognized text and invoke the event
+            string json = uwr.downloadHandler.text;
+            RecognizedText recognizedText = JsonUtility.FromJson<RecognizedText>(json);
+            OnRecognizedSpeech?.Invoke(recognizedText.recognizedText);
         }
+    }
+
+    [Serializable]
+    private class RecognizedText
+    {
+        public string recognizedText;
     }
 }
