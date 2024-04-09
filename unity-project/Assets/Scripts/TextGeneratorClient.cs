@@ -13,8 +13,8 @@ public class TextGeneratorClient : MonoBehaviour
 
     public TextToSpeechClient textToSpeechClient;
 
-    public string characterName = "Carolina Bela";
-    public string characterBio = "Carolina is from Brazil, 28 years old, she is a good friend and a warm hearted lover.";
+    private string characterName = "Karolina Bela";
+    private string characterBio = "Karolina Bela in Wonderland is from Brazil, 28 years old, she is a good friend and a warm hearted lover.";
 
 
 
@@ -45,6 +45,9 @@ public class TextGeneratorClient : MonoBehaviour
 
         // Add the event listener for FocusInEvent
         userInputField.RegisterCallback<FocusInEvent>(OnInputFieldFocused);
+
+        //send a first message "introduce yourself"
+        StartCoroutine(SendPromptAndGetResponse("Hi! Introduce yourself"));
 
     }
 
@@ -81,6 +84,8 @@ public class TextGeneratorClient : MonoBehaviour
         string fullPrompt = $"You are {characterName}, your bio: {characterBio}. Behave like a human, respond to user prompts considering the conversation context: {conversationContext} User: {userPrompt} {characterName}:";
 
         fullPrompt = Regex.Replace(fullPrompt, @"\r\n?|\n", " ");
+        fullPrompt = Regex.Replace(fullPrompt, @"[^\w\s.,!?]", "");
+
 
         Debug.Log("Sending prompt: " + fullPrompt);
 

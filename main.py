@@ -5,8 +5,11 @@ import subprocess
 from google.cloud import texttospeech, speech
 import os
 import base64
+from werkzeug.middleware.proxy_fix import ProxyFix  # Import ProxyFix
+
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app)  # Apply the ProxyFix to the app
 CORS(app)  # Enable CORS for the entire app
 
 
@@ -114,6 +117,4 @@ def recognize_speech():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5002)
-
-
+    app.run(host='0.0.0.0', port=5002, ssl_context=('domain.crt', 'domain.key'))
