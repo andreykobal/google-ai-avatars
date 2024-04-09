@@ -1,0 +1,243 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/AvatarSelector.uss?fileID=7433441132597879392&amp;guid=474aaf9ca6b12454db8016d235a21584&amp;type=3#AvatarSelector" />
+    <ui:VisualElement name="Header" style="width: 100%; height: 60px; background-color: rgba(255, 255, 255, 0); flex-direction: row; display: none;">
+        <Kamgam.UIToolkitBlurredBackground.BlurredBackground BlurStrength="9" Blur-Offset="206.8" Blur-Strength="40.2" Blur-Tint="#8E8E8EFF" Background-Color="#FFFFFF00" focusable="true" style="border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); position: absolute; top: 0; left: 0; border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+        <ui:VisualElement name="col1" style="width: 15%; align-items: flex-start; justify-content: center; padding-left: 16px;">
+            <ui:Button text="&#10;" display-tooltip-when-elided="true" name="OpenMenu" style="width: 40px; height: 40px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.78); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:VisualElement style="width: 30px; height: 30px; background-image: resource(&apos;icons/menu-w&apos;);" />
+            </ui:Button>
+        </ui:VisualElement>
+        <ui:VisualElement name="col1" style="width: 70%; align-items: center; justify-content: center; flex-direction: row;">
+            <ui:Label text="HOME" display-tooltip-when-elided="true" name="MenuItem1" style="margin-left: 8px; margin-right: 8px; color: rgb(255, 255, 255); -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); -unity-font: resource(&apos;&apos;); font-size: 16px; letter-spacing: 5px;" />
+            <ui:Label text="LOCKER" display-tooltip-when-elided="true" name="MenuItem2" style="margin-left: 8px; margin-right: 8px; color: rgb(255, 255, 255); -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); font-size: 16px; letter-spacing: 5px;" />
+            <ui:Label text="SHOP" display-tooltip-when-elided="true" name="MenuItem3" style="margin-left: 8px; margin-right: 8px; color: rgb(255, 255, 255); -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); font-size: 16px; letter-spacing: 5px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="col1" style="width: 15%; align-items: center; justify-content: flex-end; margin-right: 0; padding-right: 16px; flex-direction: row;">
+            <ui:Button text="LOGIN" display-tooltip-when-elided="true" name="LoginButtonAuth" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: 40px; padding-left: 32px; padding-right: 32px; padding-top: 0; padding-bottom: 0; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); font-size: 16px; letter-spacing: 5px; background-color: rgba(0, 0, 0, 0.78); border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
+            <ui:Button text="LOGOUT" display-tooltip-when-elided="true" name="LogoutButton" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: 40px; padding-left: 32px; padding-right: 32px; padding-top: 0; padding-bottom: 0; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); font-size: 16px; letter-spacing: 5px; background-color: rgba(0, 0, 0, 0.78); border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; display: none;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="Body" style="width: 100%; height: 100%; flex-direction: row;">
+        <ui:VisualElement name="Home" style="flex-direction: column; flex-wrap: nowrap; justify-content: flex-end; align-items: center; width: 100%; height: 100%; visibility: visible; overflow: hidden; margin-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; padding-bottom: 16px; display: flex;">
+            <Kamgam.UIToolkitBlurredBackground.BlurredBackground BlurStrength="9" Blur-Offset="206.8" Blur-Strength="40.2" Blur-Tint="#8E8E8EFF" Background-Color="#FFFFFF00" focusable="true" style="border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); position: relative; top: 0; left: 0; border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-right-radius: 16px; border-top-left-radius: 16px; border-bottom-left-radius: 16px; border-top-right-radius: 16px; height: 35%; width: 45%; background-color: rgba(0, 0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:ScrollView name="ChatHistory" style="width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; padding-left: 16px; padding-right: 0; padding-top: 8px; padding-bottom: 8px;">
+                    <ui:Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec justo ac mi malesuada elementum. Sed in ante eu nulla pulvinar cursus. Maecenas nec dui vel nunc mattis eleifend in eu sem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis eget fermentum nulla. Vestibulum euismod, justo sit amet tincidunt posuere, velit purus cursus elit, sit amet feugiat purus urna in tellus. Curabitur bibendum justo vel odio vehicula, non facilisis nunc bibendum. Maecenas ac massa id orci facilisis malesuada. Nulla facilisi. Sed eleifend nec odio non posuere. Integer ut dapibus purus. Nunc fringilla nunc ut justo bibendum, in fringilla nisi finibus. Phasellus ac tellus a nisl euismod consequat ac ut tellus. Proin euismod lacus sed risus tristique, a tempor sapien congue.&#10;&#10;Vivamus ac sapien nunc. Sed sit amet elit a ligula cursus iaculis a vel augue. Fusce vestibulum nec libero eget bibendum. Cras tincidunt auctor tellus, vel scelerisque metus viverra ut. Praesent eleifend quam eu quam dignissim, eget hendrerit turpis egestas. Sed vestibulum elit vel metus elementum, ut interdum orci lacinia. Integer ac justo dolor. Sed quis nulla id ex accumsan gravida in non quam. Morbi&#10;" display-tooltip-when-elided="true" style="white-space: normal; display: none;" />
+                </ui:ScrollView>
+                <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: center; height: 60px; background-color: rgba(0, 0, 0, 0.4); border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; padding-left: 8px; padding-right: 8px; padding-top: 0; padding-bottom: 0;">
+                    <ui:Button display-tooltip-when-elided="true" name="Voice" style="width: 40px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: 40px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center; justify-content: center; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); background-color: rgba(88, 88, 88, 0);">
+                        <ui:VisualElement name="MicIcon" style="width: 30px; height: 30px; background-image: resource(&apos;icons/mic-w&apos;);" />
+                    </ui:Button>
+                    <ui:TextField picking-mode="Ignore" value="Write your message" text="Send a message" name="Input" style="width: 85%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: auto; background-color: rgba(0, 0, 0, 0); -unity-font-definition: resource(&apos;Roboto/Roboto-Regular&apos;);" />
+                    <ui:Button display-tooltip-when-elided="true" name="Send" style="width: 40px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: 40px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); align-items: center; justify-content: center; background-color: rgba(88, 88, 88, 0);">
+                        <ui:VisualElement style="width: 30px; height: 30px; background-image: resource(&apos;icons/send-w&apos;);" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </Kamgam.UIToolkitBlurredBackground.BlurredBackground>
+            <ui:DropdownField name="MicrophoneDropdown" style="position: absolute; right: 15px; bottom: auto; top: 15px;" />
+            <ui:Button text="PLAY" display-tooltip-when-elided="true" name="PlayButton" style="position: absolute; right: 16px; bottom: 16px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); font-size: 32px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); padding-left: 48px; padding-right: 48px; padding-top: 12px; padding-bottom: 6px; margin-right: 0; margin-left: 0; margin-top: 0; margin-bottom: 0; letter-spacing: 5px; background-color: rgb(242, 137, 0); -unity-text-align: middle-center; white-space: nowrap; align-items: center; justify-content: center; color: rgb(0, 0, 0); display: none;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Locker" class="avatar-selector" style="width: 100%; display: none; background-color: rgba(255, 255, 255, 0.39);">
+            <Kamgam.UIToolkitBlurredBackground.BlurredBackground BlurStrength="9" Blur-Offset="206.8" Blur-Strength="40" Blur-Tint="#8E8E8EFF" Background-Color="#FFFFFF00" focusable="true" style="border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); position: absolute; top: 0; left: 0; border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+            <ui:ScrollView name="Grid" class="grid" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Shop" style="align-items: center; justify-content: center; width: 100%; height: 100%; display: none; background-color: rgba(255, 255, 255, 0.39); flex-direction: row;">
+            <Kamgam.UIToolkitBlurredBackground.BlurredBackground BlurStrength="9" Blur-Offset="206.8" Blur-Strength="40" Blur-Tint="#8E8E8EFF" Background-Color="#FFFFFF00" focusable="true" style="border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); position: absolute; top: 0; left: 0; border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+            <ui:VisualElement name="Item1" class="shop-item" style="width: 150px; height: 300px; align-items: center; background-color: rgb(183, 183, 183); margin-left: 8px; margin-right: 8px; background-image: resource(&apos;avatars-jpeg/1&apos;); justify-content: flex-end;">
+                <ui:VisualElement style="width: 100%; height: 40px; justify-content: center; background-color: rgb(0, 0, 0); border-top-width: 3px; border-top-color: rgb(76, 217, 100); rotate: -5deg; translate: 0 -14px; position: absolute; bottom: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 30px;" />
+                <ui:VisualElement style="rotate: 0; background-color: rgb(0, 0, 0); transform-origin: left top; scale: 1 1; width: 100%;">
+                    <ui:Label text="KLER on Scene" display-tooltip-when-elided="true" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-center; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                    <ui:Label text="FREE" display-tooltip-when-elided="true" name="PriceLabel" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-right; align-items: stretch; background-color: rgb(0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Item2" class="shop-item" style="width: 150px; height: 300px; align-items: center; background-color: rgb(183, 183, 183); margin-left: 8px; margin-right: 8px; background-image: resource(&apos;avatars-jpeg/2&apos;); justify-content: flex-end;">
+                <ui:VisualElement style="width: 100%; height: 40px; justify-content: center; background-color: rgb(0, 0, 0); border-top-width: 3px; border-top-color: rgb(88, 86, 214); rotate: -5deg; translate: 0 -14px; position: absolute; bottom: 0; border-bottom-right-radius: 30px;" />
+                <ui:VisualElement style="rotate: 0; background-color: rgb(0, 0, 0); transform-origin: left top; scale: 1 1; width: 100%;">
+                    <ui:Label text="KLER in Studio" display-tooltip-when-elided="true" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-center; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                    <ui:Label text="FREE" display-tooltip-when-elided="true" name="PriceLabel" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-right; align-items: stretch; background-color: rgb(0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Item3" class="shop-item" style="width: 150px; height: 300px; align-items: center; background-color: rgb(183, 183, 183); margin-left: 8px; margin-right: 8px; background-image: resource(&apos;avatars-jpeg/3&apos;); justify-content: flex-end;">
+                <ui:VisualElement style="width: 100%; height: 40px; justify-content: center; background-color: rgb(0, 0, 0); border-top-width: 3px; border-top-color: rgb(255, 59, 48); rotate: -5deg; translate: 0 -14px; position: absolute; bottom: 0; border-bottom-right-radius: 30px;" />
+                <ui:VisualElement style="rotate: 0; background-color: rgb(0, 0, 0); transform-origin: left top; scale: 1 1; width: 100%;">
+                    <ui:Label text="KLER DJ" display-tooltip-when-elided="true" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-center; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                    <ui:Label text="FREE" display-tooltip-when-elided="true" name="PriceLabel" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-right; align-items: stretch; background-color: rgb(0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Item4" class="shop-item" style="width: 150px; height: 300px; align-items: center; background-color: rgb(183, 183, 183); margin-left: 8px; margin-right: 8px; background-image: resource(&apos;avatars-jpeg/4&apos;); justify-content: flex-end;">
+                <ui:VisualElement style="width: 100%; height: 40px; justify-content: center; background-color: rgb(0, 0, 0); border-top-width: 3px; border-top-color: rgb(255, 204, 0); rotate: -5deg; translate: 0 -14px; position: absolute; bottom: 0; border-bottom-right-radius: 30px;" />
+                <ui:VisualElement style="rotate: 0; background-color: rgb(0, 0, 0); transform-origin: left top; scale: 1 1; width: 100%;">
+                    <ui:Label text="KLER autograph sesh" display-tooltip-when-elided="true" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-center; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                    <ui:Label text="FREE" display-tooltip-when-elided="true" name="PriceLabel" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-right; align-items: stretch; background-color: rgb(0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Item5" class="shop-item" style="width: 150px; height: 300px; align-items: center; background-color: rgb(183, 183, 183); margin-left: 8px; margin-right: 8px; background-image: resource(&apos;avatars-jpeg/5&apos;); justify-content: flex-end;">
+                <ui:VisualElement style="width: 100%; height: 40px; justify-content: center; background-color: rgb(0, 0, 0); border-top-width: 3px; border-top-color: rgb(0, 122, 255); rotate: -5deg; translate: 0 -14px; position: absolute; bottom: 0; border-bottom-right-radius: 30px;" />
+                <ui:VisualElement style="rotate: 0; background-color: rgb(0, 0, 0); transform-origin: left top; scale: 1 1; width: 100%;">
+                    <ui:Label text="KLER at home" display-tooltip-when-elided="true" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-center; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                    <ui:Label text="FREE" display-tooltip-when-elided="true" name="PriceLabel" style="justify-content: center; font-size: 14px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-right; align-items: stretch; background-color: rgb(0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="Sidebar" style="position: absolute; left: 0; top: 0; height: 100%; width: 25%; background-color: rgb(140, 140, 140); padding-left: 0; padding-right: 0; display: none; padding-top: 0; padding-bottom: 0;">
+        <Kamgam.UIToolkitBlurredBackground.BlurredBackground BlurStrength="9" Blur-Offset="206.8" Blur-Strength="40.2" Blur-Tint="#5E5E5EFF" Background-Color="#00000000" focusable="true" style="border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); position: absolute; top: 0; left: 0; border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0); padding-left: 16px; padding-right: 16px; padding-top: 0; padding-bottom: 0; display: flex;">
+            <ui:VisualElement style="width: 100%; height: 60px; padding-right: 0; justify-content: center; align-items: flex-end; padding-left: 0; padding-top: 0; padding-bottom: 0;">
+                <ui:Button text="&#10;" display-tooltip-when-elided="true" name="CloseMenu" style="width: 40px; height: 40px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.78); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                    <ui:VisualElement style="width: 30px; height: 30px; background-image: resource(&apos;icons/close-01&apos;);" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:Label text="LANGUAGE" display-tooltip-when-elided="true" name="LanguageLabel" style="width: 100%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); margin-top: 0; margin-bottom: 16px;" />
+            <ui:DropdownField index="-1" choices="System.Collections.Generic.List`1[System.String]" name="LanguageDropdown" style="width: 100%; color: rgb(255, 255, 255); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; background-color: rgb(0, 0, 0);" />
+            <ui:Button text="Refresh" display-tooltip-when-elided="true" name="ReloadButton" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; display: none;" />
+            <ui:VisualElement style="flex-direction: row; align-items: center; padding-top: 16px; padding-bottom: 8px; width: 100%; padding-left: 2px; padding-right: 8px;">
+                <ui:Label text="BACKGROUND" display-tooltip-when-elided="true" name="BackgroundLabel" style="width: 50%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+                <ui:VisualElement style="width: 50%; min-width: 0; flex-direction: row; justify-content: flex-end; margin-left: 0;">
+                    <ui:VisualElement name="Background1" style="width: 30px; height: 30px; cursor: initial; background-image: resource(&apos;backgrounds/main&apos;); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgba(255, 255, 255, 0.16); border-right-color: rgba(255, 255, 255, 0.16); border-top-color: rgba(255, 255, 255, 0.16); border-bottom-color: rgba(255, 255, 255, 0.16); border-top-left-radius: 40px; border-bottom-left-radius: 40px; border-top-right-radius: 40px; border-bottom-right-radius: 40px;" />
+                    <ui:VisualElement name="Background2" style="width: 30px; height: 30px; cursor: initial; background-image: resource(&apos;backgrounds/locker&apos;); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgba(255, 255, 255, 0.16); border-right-color: rgba(255, 255, 255, 0.16); border-top-color: rgba(255, 255, 255, 0.16); border-bottom-color: rgba(255, 255, 255, 0.16); border-top-left-radius: 40px; border-bottom-left-radius: 40px; border-top-right-radius: 40px; border-bottom-right-radius: 40px; margin-left: 4px;" />
+                    <ui:VisualElement name="Background3" style="width: 30px; height: 30px; cursor: initial; background-image: resource(&apos;backgrounds/shop&apos;); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-left-color: rgba(255, 255, 255, 0.16); border-right-color: rgba(255, 255, 255, 0.16); border-top-color: rgba(255, 255, 255, 0.16); border-bottom-color: rgba(255, 255, 255, 0.16); border-top-left-radius: 40px; border-bottom-left-radius: 40px; border-top-right-radius: 40px; border-bottom-right-radius: 40px; margin-left: 4px; -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-scale-mode: stretch-to-fill;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="AddressContainer" style="flex-direction: row; align-items: center; padding-top: 8px; padding-bottom: 8px; width: 100%; padding-left: 2px; padding-right: 8px;">
+                <ui:Label text="WALLET ADDRESS" display-tooltip-when-elided="true" name="WalletAddressTextLabel" style="width: 50%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+                <ui:Label text="ADDRESS" display-tooltip-when-elided="true" name="WalletAddressLabel" style="width: 50%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-right;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="BalanceContainer" style="flex-direction: row; align-items: center; padding-top: 8px; padding-bottom: 8px; width: 100%; padding-left: 2px; padding-right: 8px;">
+                <ui:Label text="BALANCE" display-tooltip-when-elided="true" name="BalanceTextLabel" style="width: 50%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+                <ui:Label text="WALLET ADDRESS" display-tooltip-when-elided="true" name="BalanceLabel" style="width: 50%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255); -unity-text-align: upper-right;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="CopyAddressContainer" style="flex-direction: row; align-items: center; padding-top: 8px; padding-bottom: 8px; width: 100%; padding-left: 2px; padding-right: 6px;">
+                <ui:Label text="COPY ADDRESS" display-tooltip-when-elided="true" name="CopyAddressLabel" style="width: 50%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+                <ui:Button text="COPY" display-tooltip-when-elided="true" name="CopyAddressButton" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: 50%; background-color: rgb(0, 0, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="CopyPrivkeyContainer" style="flex-direction: row; align-items: center; padding-top: 8px; padding-bottom: 8px; width: 100%; padding-left: 2px; padding-right: 6px;">
+                <ui:Label text="PRIVATE KEY" display-tooltip-when-elided="true" name="CopyPrivateKeyLabel" style="width: 50%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+                <ui:Button text="EXPORT" display-tooltip-when-elided="true" name="CopyPrivateKeyButton" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: 50%; background-color: rgb(0, 0, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="LoginForm" style="width: auto;">
+                <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="ListWallets" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Subscription" style="flex-direction: row; align-items: center; padding-top: 8px; padding-bottom: 8px; width: 100%; padding-left: 2px; padding-right: 6px;">
+                <ui:Label text="NEWS &amp; UPDATES" display-tooltip-when-elided="true" name="NewsLabel" style="width: 50%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+                <ui:Button text="SUBSCRIBE" display-tooltip-when-elided="true" name="SubscribeButton" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: 50%; background-color: rgb(0, 0, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Social" style="flex-direction: row; align-items: center; padding-top: 8px; padding-bottom: 8px; width: 100%; padding-left: 2px; padding-right: 6px;">
+                <ui:Label text="SOCIALS" display-tooltip-when-elided="true" name="SocialsLabel" style="width: 50%; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(255, 255, 255);" />
+                <ui:VisualElement style="width: 50%; flex-direction: row; align-items: center; justify-content: flex-end;">
+                    <ui:VisualElement name="SocialX" style="align-items: center; justify-content: center; width: 25px; height: 25px; background-image: resource(&apos;icons/x-twitter-01&apos;); margin-left: 4px;" />
+                    <ui:VisualElement name="SocialDiscord" style="align-items: center; justify-content: center; width: 25px; height: 25px; background-image: resource(&apos;icons/discord-01&apos;); margin-left: 4px;" />
+                    <ui:VisualElement name="SocialTelegram" style="align-items: center; justify-content: center; width: 25px; height: 25px; background-image: resource(&apos;icons/telegram-01&apos;); margin-left: 4px;" />
+                    <ui:VisualElement name="SocialLinkedin" style="align-items: center; justify-content: center; width: 25px; height: 25px; background-image: resource(&apos;icons/linkedin-01&apos;); padding-left: 0; margin-left: 4px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </Kamgam.UIToolkitBlurredBackground.BlurredBackground>
+    </ui:VisualElement>
+    <ui:VisualElement name="Notification" style="width: 256px; height: 64px; align-items: center; justify-content: center; position: absolute; top: 64px; right: 16px; background-color: rgba(255, 255, 255, 0); display: none; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+        <Kamgam.UIToolkitBlurredBackground.BlurredBackground BlurStrength="9" Blur-Offset="206.8" Blur-Strength="40.2" Blur-Tint="#656565FF" Background-Color="#FFFFFF00" focusable="true" style="border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); position: absolute; top: 0; left: 0; border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-right-radius: 8px; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0); padding-left: 16px; padding-right: 16px; padding-top: 8px; padding-bottom: 8px; justify-content: center; align-items: center; display: flex;">
+            <ui:Label text="This is an example notification" display-tooltip-when-elided="true" style="white-space: normal; -unity-text-align: middle-center; -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); font-size: 14px; color: rgb(255, 255, 255);" />
+        </Kamgam.UIToolkitBlurredBackground.BlurredBackground>
+    </ui:VisualElement>
+    <ui:VisualElement name="Hidden" style="height: 100%; visibility: visible; display: none;">
+        <ui:Button text="Mint" display-tooltip-when-elided="true" name="MintButtonAuth" />
+        <ui:VisualElement name="TransferWrapper" style="position: absolute; width: 100%; height: 100%; justify-content: center; top: -3px; left: 0; visibility: hidden; display: none;">
+            <ui:VisualElement name="TransferModal" style="position: relative; width: auto; height: auto; flex-wrap: nowrap; align-items: center; justify-content: center; top: 0; left: 2px; visibility: visible;">
+                <ui:VisualElement style="padding-left: 50px; padding-right: 50px; padding-top: 50px; padding-bottom: 50px; background-color: rgba(0, 0, 0, 0.2); border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px;">
+                    <ui:Button text="X" display-tooltip-when-elided="true" name="CloseTransferModal" class="close-button close-button-transparent" />
+                    <ui:Label text="TRANSFER TO CHAIN" display-tooltip-when-elided="true" enable-rich-text="false" style="-unity-text-align: upper-center; -unity-font-style: bold; margin-bottom: 10px; margin-top: 10px;" />
+                    <ui:Button text="ETH (TESTNET)" display-tooltip-when-elided="true" name="TransferButtonGoerli" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/xchain-goerli&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="POLYGON (TESTNET)" display-tooltip-when-elided="true" name="TransferButtonPolygonX" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/xchain-polygon&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="BNB (TESTNET)" display-tooltip-when-elided="true" name="TransferButtonBnbX" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/xchain-bsc&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; margin-top: 0; width: 100%; height: 100px; margin-left: 0; margin-right: 0; margin-bottom: 0;">
+            <ui:VisualElement name="MintModal" style="position: relative; width: auto; height: auto; flex-wrap: nowrap; align-items: center; justify-content: center; top: 0; left: 2px; visibility: visible; display: none;">
+                <ui:VisualElement style="padding-left: 50px; padding-right: 50px; padding-top: 50px; padding-bottom: 50px; background-color: rgba(0, 0, 0, 0.2); border-top-left-radius: 30px; border-bottom-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px;">
+                    <ui:Button text="X" display-tooltip-when-elided="true" name="CloseModal" class="close-button close-button-transparent" />
+                    <ui:Label text="CROSSCHAIN" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; -unity-font-style: bold; margin-bottom: 10px; margin-top: 10px;" />
+                    <ui:Button text="ETH (TESTNET)" display-tooltip-when-elided="true" name="MintButtonGoerli" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/xchain-goerli&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="POLYGON (TESTNET)" display-tooltip-when-elided="true" name="MintButtonPolygonX" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/xchain-polygon&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="BNB (TESTNET)" display-tooltip-when-elided="true" name="MintButtonBnbX" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/xchain-bsc&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Label text="SINGLE-CHAIN" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; -unity-font-style: bold; margin-bottom: 10px; margin-top: 10px;" />
+                    <ui:Button text="MANTLE" display-tooltip-when-elided="true" name="MintButtonMantle" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/mantle&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="BITCOIN (TESTNET)" display-tooltip-when-elided="true" name="MintButtonBitcoin" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/bitcoin&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="KLAYTN (TESTNET)" display-tooltip-when-elided="true" name="MintButtonKlaytn" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/klaytn&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="BNB (TESTNET)" display-tooltip-when-elided="true" name="MintButtonBnb" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/bnb&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="OPBNB (TESTNET)" display-tooltip-when-elided="true" name="MintButtonOpBnb" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/bnb&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="POLYGON (TESTNET)" display-tooltip-when-elided="true" name="MintButtonPolygon" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/polygon&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="SAGA" display-tooltip-when-elided="true" name="MintButtonSaga" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/saga&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="SKALE (TESTNET)" display-tooltip-when-elided="true" name="MintButtonSkale" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/skale-network-logo&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="METER (TESTNET)" display-tooltip-when-elided="true" name="MintButtonMeter" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/meter&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="GNOSIS (TESTNET)" display-tooltip-when-elided="true" name="MintButtonGnosis" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 30px; height: 30px; background-image: resource(&apos;Logos/gnosis&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="AURORA (TESTNET)" display-tooltip-when-elided="true" name="MintButtonAurora" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/aurora&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                    <ui:Button text="XDC (TESTNET)" display-tooltip-when-elided="true" name="MintButtonXdc" class="mint-button" style="justify-content: center;">
+                        <ui:VisualElement style="width: 25px; height: 25px; background-image: resource(&apos;Logos/xdc&apos;); margin-left: 25px;" />
+                        <ui:VisualElement name="LoginButtonFocus" style="height: 100%; position: absolute;" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="width: 100%; height: 65%; visibility: hidden; overflow: hidden; background-image: resource(&apos;icons/menu-w&apos;);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="LanguageSelect" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; align-items: center; justify-content: center; display: none;">
+        <Kamgam.UIToolkitBlurredBackground.BlurredBackground BlurStrength="9" Blur-Offset="206.8" Blur-Strength="40.2" Blur-Tint="#8E8E8EFF" Background-Color="#FFFFFF00" focusable="true" style="border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); position: absolute; top: 0; left: 0; border-top-width: 0; border-bottom-width: 0; border-left-width: 0; border-right-width: 0; border-bottom-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center; justify-content: center;">
+            <ui:VisualElement style="width: 30%; height: 15%; background-color: rgb(0, 0, 0); align-items: center; justify-content: center; padding-left: 16px; padding-right: 16px; padding-top: 16px; padding-bottom: 16px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                <ui:Label text="CHOOSE YOUR LANGUAGE / ОБЕРІТЬ МОВУ" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); margin-bottom: 8px;" />
+                <ui:VisualElement style="flex-direction: row; width: 100%;">
+                    <ui:Button text="ENGLISH" display-tooltip-when-elided="true" name="ChooseLanguageEN" style="width: 50%; margin-left: 0; margin-right: 2px; margin-top: 0; margin-bottom: 0; color: rgb(0, 0, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; background-color: rgb(242, 137, 0); -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;);" />
+                    <ui:Button text="УКРАЇНСЬКА" display-tooltip-when-elided="true" name="ChooseLanguageUA" style="width: 50%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; background-color: rgb(242, 137, 0); -unity-font-definition: resource(&apos;Roboto/Roboto-Bold&apos;); color: rgb(0, 0, 0);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </Kamgam.UIToolkitBlurredBackground.BlurredBackground>
+    </ui:VisualElement>
+</ui:UXML>

@@ -22,6 +22,8 @@ public class TextGeneratorClient : MonoBehaviour
     private string conversationContext = "";
     private const int maxContextLength = 2048; // Adjust based on your backend model's limit
 
+    public ChatHistoryManager chatHistoryManager;
+
     void OnEnable()
     {
         SpeechRecognitionManager.OnRecognizedSpeech += UseRecognizedTextAsPrompt;
@@ -45,6 +47,7 @@ public class TextGeneratorClient : MonoBehaviour
 
     IEnumerator SendPromptAndGetResponse(string userPrompt) // Use 'userPrompt' for clarity
     {
+        chatHistoryManager.AddUserMessage(userPrompt);
         // Include the conversation context with the new prompt
         string fullPrompt = $"You are {characterName}, your bio: {characterBio}. Behave like a human, respond to user prompts considering the conversation context: {conversationContext} User: {userPrompt} {characterName}:";
 
@@ -78,6 +81,8 @@ public class TextGeneratorClient : MonoBehaviour
             // Replace newline characters with a placeholder
             string responseWithPlaceholder = Regex.Replace(jsonResponse.response, @"\n", " ");
             responseWithPlaceholder = Regex.Replace(responseWithPlaceholder, @"[^\w\s.,!?]", "");
+
+            chatHistoryManager.AddAvatarMessage(responseWithPlaceholder);
 
             // Call the text to speech client with the response
             textToSpeechClient.CallSynthesizeSpeech(responseWithPlaceholder);

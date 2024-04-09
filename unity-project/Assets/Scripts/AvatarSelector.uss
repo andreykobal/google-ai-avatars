@@ -1,0 +1,98 @@
+.avatar-selector {
+    align-self: flex-end;
+    width: 350px;
+    height: 100%;
+    background-color: rgba(16, 71, 135, 0.1);
+    flex-direction: row;
+}
+
+.avatar-preview-container {
+    width: 30%;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+UiAvatarModel {
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    width: 150px;
+    height: 300px;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+UiAvatarModel:hover {
+    border-color: rgb(255, 255, 255);
+}
+
+.grid {
+    width: 99%;
+    height: 100%;
+}
+
+.grid #unity-content-container {
+    width: 100%;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+TextField#Input TextInput {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    border-width: 0;
+    font-size: 14px;
+    font: url('Resources/Roboto/Roboto-Regular.asset');
+}
+
+ScrollView#ChatHistory Scroller {
+    border-width: 0;
+}
+
+ScrollView#ChatHistory #unity-low-button {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+}
+
+ScrollView#ChatHistory #unity-high-button {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+}
+
+ScrollView#ChatHistory #unity-drag-container {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+}
+
+ScrollView#ChatHistory #unity-tracker {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+}
+
+ScrollView#ChatHistory #unity-dragger-border {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+}
+
+ScrollView#ChatHistory #unity-dragger {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+#LanguageDropdown VisualElement {
+    background-color: black;
+    color: white;
+    border-width: 0;
+    margin: 0;
+    border-radius: 16px;
+}
+#MicrophoneDropdown VisualElement {
+    background-color: black;
+    color: white;
+    border-width: 0;
+    margin: 0;
+    border-radius: 16px;
+}
