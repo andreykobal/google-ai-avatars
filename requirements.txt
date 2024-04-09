@@ -1,0 +1,6 @@
+Flask
+flask-cors
+google-cloud-texttospeech
+google-cloud-speech
+requests
+gunicorn
