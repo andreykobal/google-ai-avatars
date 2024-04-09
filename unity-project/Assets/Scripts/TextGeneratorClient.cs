@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.Networking;
 using System.Collections;
 using System;
@@ -7,8 +7,9 @@ using System.Text.RegularExpressions;
 
 public class TextGeneratorClient : MonoBehaviour
 {
-    public InputField promptInputField; // Assign in the Inspector
-    public Button sendPromptButton; // Assign in the Inspector
+    public UIDocument uiDocument;
+    private TextField userInputField;
+    private Button sendButton;
 
     public TextToSpeechClient textToSpeechClient;
 
@@ -36,13 +37,41 @@ public class TextGeneratorClient : MonoBehaviour
 
     void Start()
     {
-        sendPromptButton.onClick.AddListener(() =>
+        var root = uiDocument.rootVisualElement;
+        userInputField = root.Q<TextField>("Input");
+        sendButton = root.Q<Button>("Send");
+
+        sendButton.clicked += OnSendButtonClick;
+
+        // Add the event listener for FocusInEvent
+        userInputField.RegisterCallback<FocusInEvent>(OnInputFieldFocused);
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (!string.IsNullOrWhiteSpace(promptInputField.text))
-            {
-                StartCoroutine(SendPromptAndGetResponse(promptInputField.text));
-            }
-        });
+            OnSendButtonClick();
+        }
+    }
+
+    private void OnSendButtonClick()
+    {
+        if (!string.IsNullOrWhiteSpace(userInputField.text))
+        {
+            StartCoroutine(SendPromptAndGetResponse(userInputField.text));
+            userInputField.SetValueWithoutNotify("Send a message"); // Clear the input field after sending the message
+
+        }
+    }
+
+    private void OnInputFieldFocused(FocusInEvent evt)
+    {
+        if (userInputField.text == "Send a message")
+        {
+            userInputField.SetValueWithoutNotify(""); // Clear the input field
+        }
     }
 
     IEnumerator SendPromptAndGetResponse(string userPrompt) // Use 'userPrompt' for clarity
@@ -115,7 +144,7 @@ public class TextGeneratorClient : MonoBehaviour
 
     private void UseRecognizedTextAsPrompt(string recognizedText)
     {
-        promptInputField.text = recognizedText; // Optional: automatically set the text field
+        //userInputField.text = recognizedText; // Optional: automatically set the text field
         StartCoroutine(SendPromptAndGetResponse(recognizedText)); // Automatically send the recognized text
     }
 }
