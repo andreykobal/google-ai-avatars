@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class EmotionAnalyzer : MonoBehaviour
 {
+    public EmotionManager emotionManager; 
 
     // Function to call the analyze_emotions endpoint and log the response
     public void AnalyzeEmotions(string text)
@@ -39,11 +41,28 @@ public class EmotionAnalyzer : MonoBehaviour
                 var response = JObject.Parse(request.downloadHandler.text);
 
                 Debug.Log("Emotion analysis results:" + response);
-                // Log each emotion and its value
-                foreach (var item in response)
+
+                // Get the emotion with the highest value, the values are float that range from 0 to 1 and set the emotionManager's currentEmotion to it, handling the case where the response is empty or when there are two emotions with the same value then choose one
+                
+                if (response.Count > 0)
                 {
-                    Debug.Log(item.Key + ": " + item.Value);
+                    float max = 0;
+                    string emotion = "";
+                    foreach (var item in response)
+                    {
+                        if (float.Parse(item.Value.ToString()) > max)
+                        {
+                            max = float.Parse(item.Value.ToString());
+                            emotion = item.Key;
+                        }
+                    }
+                    emotionManager.currentEmotion = emotion;
                 }
+                else
+                {
+                    emotionManager.currentEmotion = "neutral";
+                }
+
             }
         }
     }
