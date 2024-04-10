@@ -23,7 +23,7 @@ public class SuggestionsGeneratorClient : MonoBehaviour
 
     public void SendPrompt(string context)
     {
-        string prompt = "Based on conversation context, come up with 6 suggestions of short responses of the player that can include happy, angry, sad, romantic answers or statements or expressions of feelings and at least 2 questions, and format them in json format using the template: {\"suggestions\":[\"Option 1\",\"Option 2\",\"Option 3\"]}. Conversation context: ";
+        string prompt = "Generate a list of 6 diverse and engaging short responses for the player, based on the provided conversation context. The responses should cover a broad range of emotions including happiness, anger, sadness, and romance. Ensure at least 2 of these responses are questions aimed at furthering the dialogue. Present the responses in a structured JSON format, adhering to the template: {\"suggestions\": [\"Response 1\", \"Response 2\", \"Response 3\", \"Response 4\", \"Response 5\", \"Response 6\"]}. Incorporate the conversation context to tailor the suggestions appropriately. Conversation context: ";
         //based on the context send the prompt
         StartCoroutine(SendPromptAndGetResponse(prompt + context));
     }
@@ -50,31 +50,28 @@ public class SuggestionsGeneratorClient : MonoBehaviour
             Debug.Log("Received: " + uwr.downloadHandler.text);
             try
             {
-                // First deserialization step to get the 'response' string
                 var tempResponseObject = JsonConvert.DeserializeObject<TempResponseObject>(uwr.downloadHandler.text);
                 if (tempResponseObject != null && !string.IsNullOrEmpty(tempResponseObject.response))
                 {
-                    // Clean the response string
                     string cleanedResponse = tempResponseObject.response.Trim(new char[] { ' ', '\n' });
-
-                    // Replace triple backslashes with a single backslash
                     cleanedResponse = cleanedResponse.Replace(@"\\\", @"\");
 
-
-                    // Check and remove Markdown code block markers if present
                     if (cleanedResponse.StartsWith("```json"))
                     {
-                        cleanedResponse = cleanedResponse.Substring(7); // Remove starting '```json\n'
+                        cleanedResponse = cleanedResponse.Substring(7);
+                    }
+                    if (cleanedResponse.StartsWith("```JSON"))
+                    {
+                        cleanedResponse = cleanedResponse.Substring(7);
                     }
                     if (cleanedResponse.EndsWith("```"))
                     {
-                        cleanedResponse = cleanedResponse.Substring(0, cleanedResponse.Length - 3); // Remove ending '\n```'
+                        cleanedResponse = cleanedResponse.Substring(0, cleanedResponse.Length - 3);
                     }
 
-                    // Unescape the JSON string if it was escaped
                     cleanedResponse = System.Text.RegularExpressions.Regex.Unescape(cleanedResponse);
 
-                    // Second deserialization step for the actual suggestions JSON
+                    // Try to parse the entire response object to see if it's correctly formatted
                     var responseData = JsonConvert.DeserializeObject<ResponseData>(cleanedResponse);
                     if (responseData != null && responseData.suggestions != null)
                     {
@@ -82,6 +79,22 @@ public class SuggestionsGeneratorClient : MonoBehaviour
                         {
                             Debug.Log(suggestion);
                             CreateSuggestionButton(suggestion);
+                        }
+                    }
+                    else
+                    {
+                        // If parsing fails, manually extract and clean suggestions
+                        // This is a fallback and might need adjustments based on actual malformed JSON structure
+                        var pattern = @"\{""(.*?)""\}";
+                        var matches = System.Text.RegularExpressions.Regex.Matches(cleanedResponse, pattern);
+                        foreach (System.Text.RegularExpressions.Match match in matches)
+                        {
+                            if (match.Success)
+                            {
+                                var suggestion = match.Groups[1].Value;
+                                Debug.Log(suggestion);
+                                CreateSuggestionButton(suggestion);
+                            }
                         }
                     }
                 }
@@ -92,6 +105,7 @@ public class SuggestionsGeneratorClient : MonoBehaviour
             }
         }
     }
+
 
     void CreateSuggestionButton(string suggestion)
     {
