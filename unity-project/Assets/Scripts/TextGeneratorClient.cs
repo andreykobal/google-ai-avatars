@@ -13,7 +13,7 @@ public class TextGeneratorClient : MonoBehaviour
     private VisualElement startButton; // To handle the StartButton as a VisualElement
     private VisualElement bodyElement; // To reference the Body VisualElement
 
-    private VisualElement suggestionsContainer;
+    //private VisualElement suggestionsContainer;
 
 
 
@@ -30,7 +30,7 @@ public class TextGeneratorClient : MonoBehaviour
     private const int maxContextLength = 4096; // Adjust based on your backend model's limit
 
     public ChatHistoryManager chatHistoryManager;
-    public SuggestionsGeneratorClient suggestionsManager;
+    //public SuggestionsGeneratorClient suggestionsManager;
 
     void OnEnable()
     {
@@ -49,7 +49,7 @@ public class TextGeneratorClient : MonoBehaviour
         sendButton = root.Q<Button>("Send");
         startButton = root.Q<VisualElement>("StartButton"); // Find the StartButton element
         bodyElement = root.Q<VisualElement>("Body"); // Find the Body element
-        suggestionsContainer = root.Q<VisualElement>("Suggestions");
+        //suggestionsContainer = root.Q<VisualElement>("Suggestions");
 
 
 
@@ -86,7 +86,7 @@ public class TextGeneratorClient : MonoBehaviour
         if (!string.IsNullOrWhiteSpace(userInputField.text))
         {
             // clear suggestions container
-            suggestionsContainer.Clear();
+            //suggestionsContainer.Clear();
             StartCoroutine(SendPromptAndGetResponse(userInputField.text));
             userInputField.SetValueWithoutNotify("Write your message"); // Clear the input field after sending the message
 
@@ -140,7 +140,7 @@ public class TextGeneratorClient : MonoBehaviour
             // Append both the user's prompt and AI's response to the conversation context
             conversationContext += $"Player: {userPrompt} {characterName}: {jsonResponse.response}";
             TrimConversationContext(); // Ensure the conversation context does not exceed the maximum length
-            suggestionsManager.SendPrompt(conversationContext);
+            //suggestionsManager.SendPrompt(conversationContext);
 
             // Replace newline characters with a placeholder
             string responseWithPlaceholder = Regex.Replace(jsonResponse.response, @"\n", " ");
