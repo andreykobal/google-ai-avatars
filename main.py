@@ -5,12 +5,18 @@ import subprocess
 from google.cloud import texttospeech, speech
 import os
 import base64
-from werkzeug.middleware.proxy_fix import ProxyFix  # Import ProxyFix
+import nltk
+from text2emotion import get_emotion
+
 
 
 app = Flask(__name__)
-app.wsgi_app = ProxyFix(app.wsgi_app)  # Apply the ProxyFix to the app
 CORS(app)  # Enable CORS for the entire app
+
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+nltk.download('stopwords')
 
 
 def get_access_token():
@@ -114,7 +120,15 @@ def recognize_speech():
 
     return jsonify({"recognizedText": recognized_text})
 
+@app.route('/analyze_emotions', methods=['POST'])
+def analyze_text():
+    text = request.get_json().get('text')
+    if not text:
+        return jsonify({'error': 'No text provided.'}), 400
+
+    emotions = get_emotion(text)
+    return jsonify(emotions), 200
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5002, ssl_context=('domain.crt', 'domain.key'))
+    app.run(host='0.0.0.0', port=5002)

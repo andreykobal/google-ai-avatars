@@ -18,6 +18,7 @@ public class TextGeneratorClient : MonoBehaviour
 
 
     public TextToSpeechClient textToSpeechClient;
+    public EmotionAnalyzer emotionAnalyzer;
 
     private string characterName = "Ava Marshall";
     private string characterBio = "Ava Marshall, a 28-year-old former cyber security expert, turns her hacking skills into survival tactics in the virtual battlegrounds of Ethernity. In the future, the world is in chaos because of environmental disasters and greed. To distract people and control the economy, the richest 1% create a virtual game called Ethernity. In this AI-driven open-world PvPvE shooter game, players compete on a mysterious island for valuable tokens called ETNT, which are super important in the new world economy. The island's challenges are designed by the rich elite, each adding their own twist based on their interests, like tech, oil, or crime. The game is full of different challenges like fighting zombies, surviving against robots, or finding treasures, and it changes all the time. The host of the game is a friendly AI robot, but there is a big surprise about him at the end. Players fight hard for the chance to win big and become famous in this high-stakes virtual world.";
@@ -136,6 +137,8 @@ public class TextGeneratorClient : MonoBehaviour
             Debug.Log("Received: " + uwr.downloadHandler.text);
             var jsonResponse = JsonUtility.FromJson<Response>(uwr.downloadHandler.text);
             Debug.Log("Response: " + jsonResponse.response);
+
+            emotionAnalyzer.AnalyzeEmotions(jsonResponse.response);
 
             // Append both the user's prompt and AI's response to the conversation context
             conversationContext += $"Player: {userPrompt} {characterName}: {jsonResponse.response}";
