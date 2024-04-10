@@ -27,6 +27,7 @@ public class TextGeneratorClient : MonoBehaviour
     private const int maxContextLength = 2048; // Adjust based on your backend model's limit
 
     public ChatHistoryManager chatHistoryManager;
+    public SuggestionsGeneratorClient suggestionsManager;
 
     void OnEnable()
     {
@@ -93,11 +94,16 @@ public class TextGeneratorClient : MonoBehaviour
         }
     }
 
+    public void SendPromptExternal(string prompt)
+    {
+        StartCoroutine(SendPromptAndGetResponse(prompt));
+    }
+
     IEnumerator SendPromptAndGetResponse(string userPrompt) // Use 'userPrompt' for clarity
     {
         chatHistoryManager.AddUserMessage(userPrompt);
         // Include the conversation context with the new prompt
-        string fullPrompt = $"You are {characterName}, your bio: {characterBio}. Behave like a human, respond to user prompts considering the conversation context: {conversationContext} User: {userPrompt} {characterName}:";
+        string fullPrompt = $"You are {characterName}, your bio: {characterBio}. Behave like a human, respond to player's prompts considering the conversation context: {conversationContext} Player: {userPrompt} {characterName}:";
 
         fullPrompt = Regex.Replace(fullPrompt, @"\r\n?|\n", " ");
         fullPrompt = Regex.Replace(fullPrompt, @"[^\w\s.,!?]", "");
@@ -125,8 +131,9 @@ public class TextGeneratorClient : MonoBehaviour
             Debug.Log("Response: " + jsonResponse.response);
 
             // Append both the user's prompt and AI's response to the conversation context
-            conversationContext += $"User: {userPrompt} {characterName}: {jsonResponse.response}";
+            conversationContext += $"Player: {userPrompt} {characterName}: {jsonResponse.response}";
             TrimConversationContext(); // Ensure the conversation context does not exceed the maximum length
+            suggestionsManager.SendPrompt(conversationContext);
 
             // Replace newline characters with a placeholder
             string responseWithPlaceholder = Regex.Replace(jsonResponse.response, @"\n", " ");

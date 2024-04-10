@@ -81,7 +81,6 @@ ScrollView#ChatHistory #unity-dragger {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-
 #LanguageDropdown VisualElement {
     background-color: black;
     color: white;
@@ -89,10 +88,22 @@ ScrollView#ChatHistory #unity-dragger {
     margin: 0;
     border-radius: 16px;
 }
+
 #MicrophoneDropdown VisualElement {
     background-color: black;
     color: white;
     border-width: 0;
     margin: 0;
     border-radius: 16px;
+}
+
+.suggestion-button {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 5px;
+    width: 48%;
+    -unity-text-align: middle-left;
+    border-width: 0;
+    font: url('Resources/Roboto/Roboto-Regular.asset');
+    font-size: 12px;
 }
