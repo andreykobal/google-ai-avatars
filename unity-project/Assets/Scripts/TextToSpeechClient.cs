@@ -15,7 +15,7 @@ public class TextToSpeechClient : MonoBehaviour
 
     IEnumerator SynthesizeSpeech(string textToSynthesize)
     {
-        string url = "http://localhost:5002/synthesize_speech_base64";
+        string url = "https://ailandtestnetai.top/synthesize_speech_base64";
         var requestJson = "{\"text\":\"" + textToSynthesize + "\"}";
         var uwr = new UnityWebRequest(url, "POST");
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(requestJson);

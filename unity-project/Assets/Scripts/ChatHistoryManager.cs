@@ -56,7 +56,7 @@ public class ChatHistoryManager : MonoBehaviour
         avatarMessage.style.unityFont = robotoFont;
         avatarMessage.style.fontSize = 14;
 
-        avatarMessage.text = "Avatar: " + messageText;
+        avatarMessage.text = "Ava: " + messageText;
 
         // Add the avatar message label to the ChatHistory
         chatHistory.Add(avatarMessage);

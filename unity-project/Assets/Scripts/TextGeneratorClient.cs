@@ -10,15 +10,18 @@ public class TextGeneratorClient : MonoBehaviour
     public UIDocument uiDocument;
     private TextField userInputField;
     private Button sendButton;
+    private VisualElement startButton; // To handle the StartButton as a VisualElement
+    private VisualElement bodyElement; // To reference the Body VisualElement
+
 
     public TextToSpeechClient textToSpeechClient;
 
-    private string characterName = "Karolina Bela";
-    private string characterBio = "Karolina Bela in Wonderland is from Brazil, 28 years old, she is a good friend and a warm hearted lover.";
+    private string characterName = "Ava Marshall";
+    private string characterBio = "Ava Marshall, a 28-year-old former cyber security expert, turns her hacking skills into survival tactics in the virtual battlegrounds of Ethernity. In the future, the world is in chaos because of environmental disasters and greed. To distract people and control the economy, the richest 1% create a virtual game called Ethernity. In this game, players compete on a mysterious island for valuable tokens called ETNT, which are super important in the new world economy. The island's challenges are designed by the rich elite, each adding their own twist based on their interests, like tech, oil, or crime. The game is full of different challenges like fighting zombies, surviving against robots, or finding treasures, and it changes all the time. The host of the game is a friendly AI robot, but there is a big surprise about him at the end. Players fight hard for the chance to win big and become famous in this high-stakes virtual world.";
 
 
 
-    private readonly string generateUrl = "http://localhost:5002/generate"; // Update with your server URL
+    private readonly string generateUrl = "https://ailandtestnetai.top/generate"; // Update with your server URL
 
     private string conversationContext = "";
     private const int maxContextLength = 2048; // Adjust based on your backend model's limit
@@ -40,14 +43,27 @@ public class TextGeneratorClient : MonoBehaviour
         var root = uiDocument.rootVisualElement;
         userInputField = root.Q<TextField>("Input");
         sendButton = root.Q<Button>("Send");
+        startButton = root.Q<VisualElement>("StartButton"); // Find the StartButton element
+        bodyElement = root.Q<VisualElement>("Body"); // Find the Body element
+
 
         sendButton.clicked += OnSendButtonClick;
 
+        // Initially hide the Body element
+        bodyElement.style.display = DisplayStyle.None;
+
+        // Handle StartButton click: hide StartButton, show Body, and send intro message
+        startButton.RegisterCallback<ClickEvent>(evt =>
+        {
+            startButton.style.display = DisplayStyle.None; // Hide StartButton
+            bodyElement.style.display = DisplayStyle.Flex; // Show Body element
+
+            StartCoroutine(SendPromptAndGetResponse("Hi! In one line introduce yourself and welcome the player to the game world."));
+        });
+
+
         // Add the event listener for FocusInEvent
         userInputField.RegisterCallback<FocusInEvent>(OnInputFieldFocused);
-
-        //send a first message "introduce yourself"
-        StartCoroutine(SendPromptAndGetResponse("Hi! Introduce yourself"));
 
     }
 
@@ -64,14 +80,14 @@ public class TextGeneratorClient : MonoBehaviour
         if (!string.IsNullOrWhiteSpace(userInputField.text))
         {
             StartCoroutine(SendPromptAndGetResponse(userInputField.text));
-            userInputField.SetValueWithoutNotify("Send a message"); // Clear the input field after sending the message
+            userInputField.SetValueWithoutNotify("Write your message"); // Clear the input field after sending the message
 
         }
     }
 
     private void OnInputFieldFocused(FocusInEvent evt)
     {
-        if (userInputField.text == "Send a message")
+        if (userInputField.text == "Write your message")
         {
             userInputField.SetValueWithoutNotify(""); // Clear the input field
         }
@@ -115,6 +131,9 @@ public class TextGeneratorClient : MonoBehaviour
             // Replace newline characters with a placeholder
             string responseWithPlaceholder = Regex.Replace(jsonResponse.response, @"\n", " ");
             responseWithPlaceholder = Regex.Replace(responseWithPlaceholder, @"[^\w\s.,!?]", "");
+            // if there is a characterName or the character name with a space before it in the begining replace with nothing, but only in the begining of sentence 
+            responseWithPlaceholder = Regex.Replace(responseWithPlaceholder, @"^\s?" + Regex.Escape(characterName), "", RegexOptions.IgnoreCase);
+
 
             chatHistoryManager.AddAvatarMessage(responseWithPlaceholder);
 
