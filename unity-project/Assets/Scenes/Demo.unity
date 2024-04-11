@@ -1943,8 +1943,8 @@ MonoBehaviour:
     isEyelidBlendshapeLookLeftSet: 1
     isEyelidBlendshapeLookRightSet: 1
   eyelidsWeight: 1
-  kMinNextBlinkTime: 3
-  kMaxNextBlinkTime: 10
+  kMinNextBlinkTime: 2
+  kMaxNextBlinkTime: 5
   blinkSpeed: 1
   eyelidsFollowEyesVertically: 1
   autoBlinking: 1
@@ -2475,6 +2475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 371437444}
+  meshRenderer: {fileID: 1538485016}
   currentEmotion: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
