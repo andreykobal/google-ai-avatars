@@ -17,12 +17,8 @@ public class TextToSpeechClient : MonoBehaviour
     {
         string url = "https://ailandtestnetai.top/synthesize_speech_base64";
         var requestJson = "{\"text\":\"" + textToSynthesize + "\"}";
-        var uwr = new UnityWebRequest(url, "POST");
-        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(requestJson);
-        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
 
+        UnityWebRequest uwr = WebRequestUtility.CreatePostRequest(url, requestJson);
         yield return uwr.SendWebRequest();
 
         if (uwr.result == UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)

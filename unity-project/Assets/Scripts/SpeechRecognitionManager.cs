@@ -55,14 +55,10 @@ public class SpeechRecognitionManager : MonoBehaviour
 
     IEnumerator SendRequestToServer(string audioContentBase64)
     {
-        string recognitionUrl = "https://ailandtestnetai.top/recognize_speech"; // Update with your Flask server URL
+        string recognitionUrl = "https://ailandtestnetai.top/recognize_speech";
         var requestJson = "{\"audioContentBase64\":\"" + audioContentBase64 + "\"}";
-        var uwr = new UnityWebRequest(recognitionUrl, "POST");
-        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(requestJson);
-        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
 
+        UnityWebRequest uwr = WebRequestUtility.CreatePostRequest(recognitionUrl, requestJson);
         yield return uwr.SendWebRequest();
 
         if (uwr.result == UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)

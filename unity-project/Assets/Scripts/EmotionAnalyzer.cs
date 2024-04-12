@@ -17,53 +17,40 @@ public class EmotionAnalyzer : MonoBehaviour
     private IEnumerator SendRequest(string text)
     {
         string url = "https://ailandtestnetai.top/analyze_emotions";
-
-        // Create the request body
         string requestBody = "{\"text\": \"" + text + "\"}";
+        UnityWebRequest request = WebRequestUtility.CreatePostRequest(url, requestBody);
 
-        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
         {
-            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(requestBody);
-            request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json");
+            Debug.LogError(request.error);
+        }
+        else
+        {
+            // Parsing and processing logic remains unchanged
+            var response = JObject.Parse(request.downloadHandler.text);
+            Debug.Log("Emotion analysis results:" + response);
 
-            // Send the request and wait for the response
-            yield return request.SendWebRequest();
-
-            if (request.result != UnityWebRequest.Result.Success)
+            if (response.Count > 0)
             {
-                Debug.LogError(request.error);
+                float max = 0;
+                string emotion = "";
+                foreach (var item in response)
+                {
+                    if (float.Parse(item.Value.ToString()) > max)
+                    {
+                        max = float.Parse(item.Value.ToString());
+                        emotion = item.Key;
+                    }
+                }
+                emotionManager.currentEmotion = emotion;
             }
             else
             {
-                // Parse the JSON response
-                var response = JObject.Parse(request.downloadHandler.text);
-
-                Debug.Log("Emotion analysis results:" + response);
-
-                // Get the emotion with the highest value, the values are float that range from 0 to 1 and set the emotionManager's currentEmotion to it, handling the case where the response is empty or when there are two emotions with the same value then choose one
-                
-                if (response.Count > 0)
-                {
-                    float max = 0;
-                    string emotion = "";
-                    foreach (var item in response)
-                    {
-                        if (float.Parse(item.Value.ToString()) > max)
-                        {
-                            max = float.Parse(item.Value.ToString());
-                            emotion = item.Key;
-                        }
-                    }
-                    emotionManager.currentEmotion = emotion;
-                }
-                else
-                {
-                    emotionManager.currentEmotion = "neutral";
-                }
-
+                emotionManager.currentEmotion = "neutral";
             }
         }
     }
+
 }

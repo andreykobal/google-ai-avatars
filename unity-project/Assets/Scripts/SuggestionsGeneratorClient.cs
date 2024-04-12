@@ -33,12 +33,7 @@ public class SuggestionsGeneratorClient : MonoBehaviour
         var requestData = new RequestData { prompt = prompt };
         string json = JsonConvert.SerializeObject(requestData);
 
-        var uwr = new UnityWebRequest(generateUrl, "POST");
-        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
-        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
-
+        UnityWebRequest uwr = WebRequestUtility.CreatePostRequest(generateUrl, json);
         yield return uwr.SendWebRequest();
 
         if (uwr.result == UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)

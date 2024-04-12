@@ -120,12 +120,7 @@ public class TextGeneratorClient : MonoBehaviour
         Debug.Log("Sending prompt: " + fullPrompt);
 
         var requestJson = "{\"prompt\":\"" + fullPrompt + "\"}";
-        var uwr = new UnityWebRequest(generateUrl, "POST");
-        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(requestJson);
-        uwr.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
-
+        UnityWebRequest uwr = WebRequestUtility.CreatePostRequest(generateUrl, requestJson);
         yield return uwr.SendWebRequest();
 
         if (uwr.result == UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError)
