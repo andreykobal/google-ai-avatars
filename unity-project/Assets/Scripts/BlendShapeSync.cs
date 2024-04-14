@@ -4,6 +4,8 @@ public class BlendShapeSync : MonoBehaviour
 {
     public SkinnedMeshRenderer headRenderer; // Assign in inspector
     public SkinnedMeshRenderer teethRenderer; // Assign in inspector
+    public string blendShapePrefixHead = ""; // Prefix for head blend shapes, set in inspector
+    public string blendShapePrefixTeeth = ""; // Prefix for teeth blend shapes, set in inspector
 
     private int blendShapeIndexHead;
     private int blendShapeIndexTeeth;
@@ -11,8 +13,8 @@ public class BlendShapeSync : MonoBehaviour
     void Start()
     {
         // Ensure you replace "jawOpen" with the exact name of your blendshape if different
-        blendShapeIndexHead = headRenderer.sharedMesh.GetBlendShapeIndex("HEAD.jawOpen");
-        blendShapeIndexTeeth = teethRenderer.sharedMesh.GetBlendShapeIndex("TEETH.jawOpen");
+        blendShapeIndexHead = headRenderer.sharedMesh.GetBlendShapeIndex($"{blendShapePrefixHead}jawOpen");
+        blendShapeIndexTeeth = teethRenderer.sharedMesh.GetBlendShapeIndex($"{blendShapePrefixTeeth}jawOpen");
 
         if (blendShapeIndexHead == -1 || blendShapeIndexTeeth == -1)
         {

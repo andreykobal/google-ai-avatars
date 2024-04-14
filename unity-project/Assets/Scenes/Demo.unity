@@ -2171,6 +2171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headRenderer: {fileID: 1538485016}
   teethRenderer: {fileID: 252071302}
+  blendShapePrefixHead: HEAD.
+  blendShapePrefixTeeth: TEETH.
 --- !u!137 &1538485016 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7419278474486152629, guid: 97d2bbe7b238b93438cc5b43acc85130,
