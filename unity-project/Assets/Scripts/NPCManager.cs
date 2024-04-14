@@ -14,6 +14,9 @@ public class NPCManager : MonoBehaviour
     private const string apiUrl = "https://ailandtestnetai.top/generate";
     private TextToSpeechClient currentSpeaker, nextSpeaker;
 
+    public string NPC1 = "Ava";
+    public string NPC2 = "Kai";
+
     void Start()
     {
         currentSpeaker = npc1;
@@ -40,10 +43,13 @@ public class NPCManager : MonoBehaviour
 
     IEnumerator GenerateDialogueResponse(string prompt, TextToSpeechClient speaker)
     {
-        string npcName = speaker == npc1 ? "NPC1" : "NPC2";
-        string otherNPCName = speaker == npc1 ? "NPC2" : "NPC1";
+        string npcName = speaker == npc1 ? NPC1 : NPC2;
+        string otherNPCName = speaker == npc1 ? NPC2 : NPC1;
         string formattedContext = FormatConversationContext(conversationContext);
         string fullPrompt = $"You are {npcName}, and you are having a conversation with {otherNPCName}, respond to the last message, considering conversation context {formattedContext}, {npcName}: ";
+        string gender = npcName == NPC1 ? "female" : "male";
+
+
 
         Debug.Log("Sending prompt: " + fullPrompt);
 
@@ -76,7 +82,11 @@ public class NPCManager : MonoBehaviour
 
 
                 UpdateConversationContext(responseWithPlaceholder);
-                speaker.CallSynthesizeSpeech(responseWithPlaceholder);
+
+                
+                Debug.Log("Synthesizing speech for: " + responseWithPlaceholder + " Gender: " + gender);
+                speaker.CallSynthesizeSpeech(responseWithPlaceholder, gender);
+
             }
         }
     }
@@ -85,7 +95,7 @@ public class NPCManager : MonoBehaviour
     {
         if (!string.IsNullOrWhiteSpace(response))
         {
-            string npcName = currentSpeaker == npc1 ? "NPC1" : "NPC2";
+            string npcName = currentSpeaker == npc1 ? NPC1 : NPC2;
             conversationContext += $"{npcName}: {response}";
             LimitConversationHistory();
         }

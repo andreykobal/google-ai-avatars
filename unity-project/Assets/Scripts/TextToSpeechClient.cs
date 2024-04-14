@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class TextToSpeechClient : MonoBehaviour
 {
@@ -23,9 +24,11 @@ public class TextToSpeechClient : MonoBehaviour
         }
     }
 
-    IEnumerator SynthesizeSpeech(string textToSynthesize)
+    IEnumerator SynthesizeSpeech(string textToSynthesize, string gender)
     {
-        string url = "https://ailandtestnetai.top/synthesize_speech_base64";
+        string url = (gender.ToLower() == "male")
+            ? "https://ailandtestnetai.top/synthesize_speech_base64_male"
+            : "https://ailandtestnetai.top/synthesize_speech_base64";
         var requestJson = "{\"text\":\"" + textToSynthesize + "\"}";
 
         UnityWebRequest uwr = WebRequestUtility.CreatePostRequest(url, requestJson);
@@ -47,10 +50,10 @@ public class TextToSpeechClient : MonoBehaviour
         }
     }
 
-    public void CallSynthesizeSpeech(string textToSynthesize)
+    public void CallSynthesizeSpeech(string textToSynthesize, string gender)
     {
         Debug.Log("Synthesizing speech for: " + textToSynthesize);
-        StartCoroutine(SynthesizeSpeech(textToSynthesize));
+        StartCoroutine(SynthesizeSpeech(textToSynthesize, gender));
     }
 
     [Serializable]

@@ -75,22 +75,26 @@ def generate():
         return jsonify({"error": "Failed to generate poem"}), response.status_code
 
 
+def synthesize_speech(text, gender):
+    client = texttospeech.TextToSpeechClient()
+    synthesis_input = texttospeech.SynthesisInput(text=text)
+    voice = texttospeech.VoiceSelectionParams(language_code="en-US", ssml_gender=gender)
+    audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.LINEAR16)
+    response = client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
+    return base64.b64encode(response.audio_content).decode('utf-8')
+
 @app.route('/synthesize_speech_base64', methods=['POST'])
 def synthesize_speech_base64():
     data = request.get_json()
     text = data.get('text')
-    
-    client = texttospeech.TextToSpeechClient()
-    synthesis_input = texttospeech.SynthesisInput(text=text)
-    voice = texttospeech.VoiceSelectionParams(language_code="en-US", ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL)
-    # Use LINEAR16 to get WAV format audio
-    audio_config = texttospeech.AudioConfig(audio_encoding=texttospeech.AudioEncoding.LINEAR16)
-    
-    response = client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
-    
-    # Encode the WAV audio content to Base64
-    audio_content_base64 = base64.b64encode(response.audio_content).decode('utf-8')
-    
+    audio_content_base64 = synthesize_speech(text, texttospeech.SsmlVoiceGender.FEMALE)
+    return jsonify({"audioContentBase64": audio_content_base64})
+
+@app.route('/synthesize_speech_base64_male', methods=['POST'])
+def synthesize_speech_base64_male():
+    data = request.get_json()
+    text = data.get('text')
+    audio_content_base64 = synthesize_speech(text, texttospeech.SsmlVoiceGender.MALE)
     return jsonify({"audioContentBase64": audio_content_base64})
 
 @app.route('/recognize_speech', methods=['POST'])
@@ -132,3 +136,4 @@ def analyze_text():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5002)
+

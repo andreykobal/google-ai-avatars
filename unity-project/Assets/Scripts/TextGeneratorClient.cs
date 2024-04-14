@@ -149,8 +149,9 @@ public class TextGeneratorClient : MonoBehaviour
 
             chatHistoryManager.AddAvatarMessage(responseWithPlaceholder);
 
+
             // Call the text to speech client with the response
-            textToSpeechClient.CallSynthesizeSpeech(responseWithPlaceholder);
+            textToSpeechClient.CallSynthesizeSpeech(responseWithPlaceholder, "female");
         }
     }
 
