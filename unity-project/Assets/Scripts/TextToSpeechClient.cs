@@ -6,11 +6,21 @@ using System.Collections;
 public class TextToSpeechClient : MonoBehaviour
 {
     public AudioSource audioSource;
+    public event Action OnSpeechEnded; // Event to be triggered when speech ends
 
     void Start()
     {
-        // Example call to synthesize speech from text and play it
-        //StartCoroutine(SynthesizeSpeech("Hello, this is a test of the speech synthesis."));
+        // Initialization if needed
+    }
+
+    void Update()
+    {
+        // Check if the AudioSource is playing and if not, trigger the OnSpeechEnded event
+        if (!audioSource.isPlaying && audioSource.clip != null)
+        {
+            audioSource.clip = null; // Optionally clear the clip
+            OnSpeechEnded?.Invoke(); // Invoke the event
+        }
     }
 
     IEnumerator SynthesizeSpeech(string textToSynthesize)
@@ -40,7 +50,6 @@ public class TextToSpeechClient : MonoBehaviour
     public void CallSynthesizeSpeech(string textToSynthesize)
     {
         Debug.Log("Synthesizing speech for: " + textToSynthesize);
-
         StartCoroutine(SynthesizeSpeech(textToSynthesize));
     }
 
