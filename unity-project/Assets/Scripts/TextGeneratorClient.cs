@@ -33,6 +33,8 @@ public class TextGeneratorClient : MonoBehaviour
     public ChatHistoryManager chatHistoryManager;
     public SuggestionsGeneratorClient suggestionsManager;
 
+    public static bool isStartClicked = false;
+
     void OnEnable()
     {
         SpeechRecognitionManager.OnRecognizedSpeech += UseRecognizedTextAsPrompt;
@@ -45,6 +47,11 @@ public class TextGeneratorClient : MonoBehaviour
 
     void Start()
     {
+        InitializeUI();
+    }
+
+    public void InitializeUI()
+    {
         var root = uiDocument.rootVisualElement;
         userInputField = root.Q<TextField>("Input");
         sendButton = root.Q<Button>("Send");
@@ -56,8 +63,17 @@ public class TextGeneratorClient : MonoBehaviour
 
         sendButton.clicked += OnSendButtonClick;
 
+        if (!isStartClicked) {
+            bodyElement.style.display = DisplayStyle.None;
+            startButton.style.display = DisplayStyle.Flex; // Show StartButton
+        } else {
+            bodyElement.style.display = DisplayStyle.Flex;
+            startButton.style.display = DisplayStyle.None; // Hide StartButton
+
+            StartCoroutine(SendPromptAndGetResponse("Hi! In one line introduce yourself and welcome the player to the game world."));
+
+        }
         // Initially hide the Body element
-        bodyElement.style.display = DisplayStyle.None;
 
         // Handle StartButton click: hide StartButton, show Body, and send intro message
         startButton.RegisterCallback<ClickEvent>(evt =>
@@ -65,13 +81,14 @@ public class TextGeneratorClient : MonoBehaviour
             startButton.style.display = DisplayStyle.None; // Hide StartButton
             bodyElement.style.display = DisplayStyle.Flex; // Show Body element
 
+            isStartClicked = true;
+
             StartCoroutine(SendPromptAndGetResponse("Hi! In one line introduce yourself and welcome the player to the game world."));
         });
 
 
         // Add the event listener for FocusInEvent
         userInputField.RegisterCallback<FocusInEvent>(OnInputFieldFocused);
-
     }
 
     private void Update()

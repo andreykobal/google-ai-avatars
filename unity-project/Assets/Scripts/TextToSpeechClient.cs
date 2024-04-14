@@ -52,7 +52,7 @@ public class TextToSpeechClient : MonoBehaviour
 
     public void CallSynthesizeSpeech(string textToSynthesize, string gender)
     {
-        Debug.Log("Synthesizing speech for: " + textToSynthesize);
+        //Debug.Log("Synthesizing speech for: " + textToSynthesize);
         StartCoroutine(SynthesizeSpeech(textToSynthesize, gender));
     }
 

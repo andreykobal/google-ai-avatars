@@ -17,6 +17,11 @@ public class NPCManager : MonoBehaviour
     public string NPC1 = "Ava";
     public string NPC2 = "Kai";
 
+    public string Npc1Bio = "Ava Marshall, a 28-year-old former cyber security expert, turns her hacking skills into survival tactics in the virtual battlegrounds of Ethernity. The year is 2052, the world is in chaos because of environmental disasters and greed. To distract people and control the economy, the richest 1% create a virtual game called Ethernity. In this AI-driven open-world PvPvE shooter game, players compete on a mysterious island for valuable blockchain tokens called ETNT, which are super important in the new world economy. The island's challenges are designed by the rich elite, each adding their own twist based on their interests, like tech, oil, or crime. The game is full of different challenges like fighting zombies, surviving against robots, or finding treasures, and it changes all the time. The host of the game is a friendly AI robot, but there is a big surprise about him at the end. Players fight hard for the chance to win big and become famous in this high-stakes virtual world.";
+
+    public string Npc2Bio = "Kai Smith is a 30-year-old professional mercenary who now uses his skills to survive in the virtual battlegrounds of Ethernity.";
+
+
     void Start()
     {
         currentSpeaker = npc1;
@@ -45,8 +50,11 @@ public class NPCManager : MonoBehaviour
     {
         string npcName = speaker == npc1 ? NPC1 : NPC2;
         string otherNPCName = speaker == npc1 ? NPC2 : NPC1;
+        string npcBio = speaker == npc1 ? Npc1Bio : Npc2Bio;
+        string otherNpcBio = speaker == npc1 ? Npc2Bio : Npc1Bio;
         string formattedContext = FormatConversationContext(conversationContext);
-        string fullPrompt = $"You are {npcName}, and you are having a conversation with {otherNPCName}, respond to the last message, considering conversation context {formattedContext}, {npcName}: ";
+        string fullPrompt = $"You are {npcName}, your bio: {npcBio}, and you are having a casual conversation discussing the recent battles, weapons, skins, tactics, crypto earnings, completed quests and a humorous misunderstanding has just occurred with {otherNPCName}, who's bio is {otherNpcBio}. Keep the conversation light, filled with jokes and playful banter, respond very shotrly to the last message, considering conversation context {formattedContext}, {npcName}: ";
+
         string gender = npcName == NPC1 ? "female" : "male";
 
 
@@ -84,7 +92,7 @@ public class NPCManager : MonoBehaviour
                 UpdateConversationContext(responseWithPlaceholder);
 
                 
-                Debug.Log("Synthesizing speech for: " + responseWithPlaceholder + " Gender: " + gender);
+                //Debug.Log("Synthesizing speech for: " + responseWithPlaceholder + " Gender: " + gender);
                 speaker.CallSynthesizeSpeech(responseWithPlaceholder, gender);
 
             }
@@ -96,7 +104,7 @@ public class NPCManager : MonoBehaviour
         if (!string.IsNullOrWhiteSpace(response))
         {
             string npcName = currentSpeaker == npc1 ? NPC1 : NPC2;
-            conversationContext += $"{npcName}: {response}";
+            conversationContext += $" {npcName}: {response}";
             LimitConversationHistory();
         }
     }
