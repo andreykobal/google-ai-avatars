@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System;
 using System.Collections;
 using System.Text.RegularExpressions;
+
 public class NPCManager : MonoBehaviour
 {
     [SerializeField] private TextToSpeechClient npc1;
@@ -24,7 +25,6 @@ public class NPCManager : MonoBehaviour
 
     private void SwitchSpeaker()
     {
-        // Swap speakers only if the last response was valid and not empty
         if (!string.IsNullOrWhiteSpace(conversationContext))
         {
             (currentSpeaker, nextSpeaker) = (nextSpeaker, currentSpeaker);
@@ -40,52 +40,53 @@ public class NPCManager : MonoBehaviour
 
     IEnumerator GenerateDialogueResponse(string prompt, TextToSpeechClient speaker)
     {
-        string fullPrompt = $"NPC: {prompt} Context: {conversationContext}";
-        fullPrompt = Regex.Replace(fullPrompt, @"\r\n?|\n", " "); // Remove newlines
-        fullPrompt = Regex.Replace(fullPrompt, @"[^\w\s.,!?]", ""); // Remove special characters
+        string npcName = speaker == npc1 ? "NPC1" : "NPC2";
+        string otherNPCName = speaker == npc1 ? "NPC2" : "NPC1";
+        string formattedContext = FormatConversationContext(conversationContext);
+        string fullPrompt = $"You are {npcName}, and you are having a conversation with {otherNPCName}, respond to the last message, considering conversation context {formattedContext}, {npcName}: ";
 
-        var requestJson = "{\"prompt\":\"" + fullPrompt + "\"}";
         Debug.Log("Sending prompt: " + fullPrompt);
 
-        // Create the request and send JSON data
+        fullPrompt = Regex.Replace(fullPrompt, @"\r\n?|\n", " ");
+        fullPrompt = Regex.Replace(fullPrompt, @"[^\w\s.,!?]", "");
+
+
         using (UnityWebRequest uwr = UnityWebRequest.PostWwwForm(apiUrl, "POST"))
         {
-            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(requestJson);
+            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes("{\"prompt\":\"" + fullPrompt + "\"}");
             uwr.uploadHandler = new UploadHandlerRaw(jsonToSend);
             uwr.downloadHandler = new DownloadHandlerBuffer();
             uwr.SetRequestHeader("Content-Type", "application/json");
 
             yield return uwr.SendWebRequest();
 
-            if (uwr.result == UnityWebRequest.Result.ConnectionError || uwr.result == UnityWebRequest.Result.ProtocolError || uwr.result == UnityWebRequest.Result.DataProcessingError)
+            if (uwr.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError("Error: " + uwr.error);
             }
             else
             {
-                var jsonResponse = JsonUtility.FromJson<Response>(uwr.downloadHandler.text);
-                if (jsonResponse.response != null && jsonResponse.response.Length > 0)
-                {
-                    Debug.Log("Response: " + jsonResponse.response);
+                string jsonResponse = JsonUtility.FromJson<Response>(uwr.downloadHandler.text).response;
+                Debug.Log("Response: " + jsonResponse);
 
-                    string responseWithPlaceholder = Regex.Replace(jsonResponse.response, @"\n", " ");
-                    responseWithPlaceholder = Regex.Replace(responseWithPlaceholder, @"[^\w\s.,!?]", "");
-                    // if there is a characterName or the character name with a space before it in the begining replace with nothing, but only in the begining of sentence 
-                    //responseWithPlaceholder = Regex.Replace(responseWithPlaceholder, @"^\s?" + Regex.Escape(characterName), "", RegexOptions.IgnoreCase);
+                string responseWithPlaceholder = Regex.Replace(jsonResponse, @"\n", " ");
+                responseWithPlaceholder = Regex.Replace(responseWithPlaceholder, @"[^\w\s.,!?]", "");
+                // if there is a characterName or the character name with a space before it in the begining replace with nothing, but only in the begining of sentence 
+                responseWithPlaceholder = Regex.Replace(responseWithPlaceholder, @"^\s?" + Regex.Escape(npcName), "", RegexOptions.IgnoreCase);
 
-                    UpdateConversationContext(prompt, responseWithPlaceholder);
-                    speaker.CallSynthesizeSpeech(responseWithPlaceholder);
-                }
+
+                UpdateConversationContext(responseWithPlaceholder);
+                speaker.CallSynthesizeSpeech(responseWithPlaceholder);
             }
         }
     }
 
-
-    private void UpdateConversationContext(string prompt, string response)
+    private void UpdateConversationContext(string response)
     {
         if (!string.IsNullOrWhiteSpace(response))
         {
-            conversationContext += $"NPC said: {prompt} Response: {response} ";
+            string npcName = currentSpeaker == npc1 ? "NPC1" : "NPC2";
+            conversationContext += $"{npcName}: {response}";
             LimitConversationHistory();
         }
     }
@@ -94,16 +95,21 @@ public class NPCManager : MonoBehaviour
     {
         while (conversationContext.Length > maxContextLength)
         {
-            int firstBreak = conversationContext.IndexOf('.');
+            int firstBreak = conversationContext.IndexOf('\n');
             if (firstBreak >= 0)
             {
                 conversationContext = conversationContext.Substring(firstBreak + 1);
             }
             else
             {
-                break; // Break if no period is found
+                break; // No further break found, break out of the loop
             }
         }
+    }
+
+    private string FormatConversationContext(string context)
+    {
+        return Regex.Replace(context, @"\r\n?|\n", " ");
     }
 
     [Serializable]
