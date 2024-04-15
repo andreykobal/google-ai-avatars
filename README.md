@@ -7,8 +7,8 @@
 
 ### 1. Demo 
 
-- [Interactive Demo](https://ethernity.app/demo/)
-- [Demo Video](https://example.com)
+- #### [Interactive Demo](https://ethernity.app/demo/)
+- #### [Demo Video](https://example.com)
 
 ### 2. Problem Statement
 In the gaming and web app industries, NPCs (non-player characters) often lack dynamic interactions, limiting player engagement and immersion. Research indicates that 99% of gamers believe that advanced AI in NPCs could significantly enhance their gaming experience, influencing both their time spent and willingness to pay more for intelligent NPC interactions.
