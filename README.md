@@ -47,7 +47,99 @@ We have successfully developed a versatile SDK that not only enriches user exper
 ### 8. Future Work
 Looking forward, we plan to integrate this technology into "Ethernity," our upcoming AI-powered PvPvE shooter game. We aim to develop open-world and dynamic game modes that utilize "Gemini AI Pro," an advanced version of our SDK that allows NPCs to remember players' actions and maintain long-term chat histories, thereby enhancing personalized gameplay experiences.
 
-### 9. Team Name and Members
+# 9. SDK Documentation
+
+This is a comprehensive guide for integrating and utilizing the Google AI Avatars SDK. This SDK facilitates the creation of next-gen AI-powered NPCs (non-player characters) for games and web applications, providing realistic interactions through advanced AI technologies.
+
+## Getting Started
+
+### Initial Setup
+
+Before you begin, you will need to set up your environment to use Google Cloud's AI services. Refer to the following documentation to get started:
+
+- **Generative AI**: [Vertex AI Generative AI Documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/)
+- **Text-to-Speech**: [Text-to-Speech Documentation](https://cloud.google.com/text-to-speech/docs/)
+- **Speech-to-Text**: [Speech-to-Text Documentation](https://cloud.google.com/speech-to-text/docs)
+
+### Installation
+
+1. Clone the repository to your local machine.
+2. Ensure you have Python and Flask installed.
+3. Install necessary Python libraries as mentioned in `requirements.txt`.
+4. Set up Google Cloud credentials by following the linked documentation.
+
+## Server-Side Application
+
+The Flask application acts as the backend for the Google AI Avatars SDK. Below are the endpoints provided by the `main.py` script:
+
+### Endpoints
+
+- **POST /generate**: Generates responses based on user input using AI.
+  - Input: JSON with 'prompt'
+  - Output: AI-generated text based on the prompt
+
+- **POST /synthesize_speech_base64**: Converts text to speech and returns audio in base64 encoding.
+  - Input: JSON with 'text'
+  - Output: Base64 encoded speech audio
+
+- **POST /synthesize_speech_base64_male**: Similar to the above but uses a male voice.
+  - Input: JSON with 'text'
+  - Output: Base64 encoded speech audio
+
+- **POST /recognize_speech**: Converts speech audio back to text.
+  - Input: JSON with 'audioContentBase64'
+  - Output: Recognized text
+
+- **POST /analyze_emotions**: Analyzes the emotional content of the text.
+  - Input: JSON with 'text'
+  - Output: Emotion analysis results
+
+### Running the Server
+
+To run the server:
+```bash
+python main.py
+```
+This will start the Flask server on `localhost` at port `5002`.
+
+## Unity Project Setup
+
+Located in `/unity-project` directory, this project contains several scripts that integrate the SDK's functionalities into Unity applications.
+
+### Scripts and Their Functions
+
+- **`AudioAnimationController.cs`**: Manages animation of avatars based on audio.
+- **`AudioResampler.cs`**: Resamples WAV files to ensure compatibility.
+- **`AvatarSelector.uss`**: Manages styles for the UI elements in the game.
+- **`BlendShapeSync.cs`**: Synchronizes facial blendshapes for realistic animations.
+- **`ChatHistoryManager.cs`**: Manages the display and storage of chat history in the UI.
+- **`EmotionAnalyzer.cs`**: Requests and retrieves emotion analysis results.
+- **`EmotionManager.cs`**: Adjusts avatar facial expressions based on analyzed emotions.
+- **`MicrophoneRecorder.cs`**: Handles microphone input in WebGL.
+- **`NPCManager.cs`**: Generates and manages NPC conversations.
+- **`SceneChanger.cs`**: Manages transitions between different scenes in Unity.
+- **`SpeechRecognitionManager.cs`**: Handles speech-to-text functionality.
+- **`SubtitleDisplayManager.cs`**: Displays subtitles for spoken dialogues.
+- **`SuggestionsGeneratorClient.cs`**: Generates AI-based suggestions for user inputs.
+- **`TextGeneratorClient.cs`**: Main client for generating responses from AI.
+- **`TextToSpeechClient.cs`**: Converts text to speech within the game.
+- **`WavUtility.cs`**: Utilities for handling WAV file conversions.
+- **`WebRequestUtility.cs`**: Facilitates web requests within Unity.
+
+### Building the Project
+
+To build the Unity project for all supported platforms:
+1. Open the Unity Editor.
+2. Load the project from the `/unity-project` directory.
+3. Build the project using Unity's build tools.
+
+## Deployment
+
+Deploy the Flask application using your preferred method:
+- **Containerization**: Use Docker to containerize the Flask app.
+- **Cloud Deployment**: Deploy using Google Cloud VMs or App Engine for scalability and ease of management.
+
+### 10. Team Name and Members
 **Team ETHRNITY**:
 
 - **Valentin Sotov, CEO**
@@ -83,10 +175,14 @@ Looking forward, we plan to integrate this technology into "Ethernity," our upco
 - 🥇 AIBC Playnance Hackathon Winner
 - 🥇 Hack-a-TONx Winner
 
-### 10. Conclusion
+
+### 11. Conclusion
 **Google AI Avatars** stands at the forefront of a revolution in digital interaction within the gaming and web app industries. By bridging the gap between technology and user experience, this project paves the way for a new era of engagement where every interaction feels uniquely personal and profoundly engaging.
 
-### 11. Visuals and Links (Optional)
+The **Google AI Avatars SDK** is designed to empower developers to create more engaging and realistic interactions in games and web apps. By following this documentation, you should be able to successfully integrate and utilize all functionalities of the SDK.
+
+
+### 12. Visuals and Links (Optional)
 - [Interactive Demo](#)
 - [GitHub Repository](#)
 - [Project Presentation](#)
