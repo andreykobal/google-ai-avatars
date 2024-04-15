@@ -6,6 +6,8 @@
 ### 2. Problem Statement
 In the gaming and web app industries, NPCs (non-player characters) often lack dynamic interactions, limiting player engagement and immersion. Research indicates that 99% of gamers believe that advanced AI in NPCs could significantly enhance their gaming experience, influencing both their time spent and willingness to pay more for intelligent NPC interactions.
 
+Source: [Inworld study on the future of NPCs finds 99% of gamers think AI will enhance gameplay](https://inworld.ai/blog/future-of-npcs-report)
+
 ### 3. Solution Overview
 **Google AI Avatars** is an SDK designed to integrate cutting-edge AI functionalities with NPCs in games and web apps, providing highly interactive and realistic experiences. This solution is engineered using Unity for the client-side and Google Vertex AI models on the backend to facilitate rich interactions through both text and voice.
 
