@@ -70,11 +70,6 @@ Looking forward, we plan to integrate this technology into "Ethernity," our upco
   - Passionate artist enhancing player interaction
   - Proficient in intuitive Web3 technologies
 
-- **Kelly Bender, Lead Narrative Designer**
-  - Portfolio includes 30+ published AAA and AA video games
-  - Author of 40+ comic books and stories
-  - Crafts engaging narratives and compelling game storylines
-
 ### Achievements
 - 🏆 Game Development World Championship: Best Web3 Game Finalist
 - 🥇 BNB Chain 2024 Q1 Hackathon Winner
