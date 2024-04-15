@@ -1,10 +1,14 @@
 # Google AI Avatars: Revolutionizing NPC Interactions in Gaming and Web Apps
 
-### 1. Project Title
+### Project Title
 **Google AI Avatars: Next-Gen AI-Powered NPCs**
 
 ![ai avatars](https://github.com/andreykobal/google-ai-avatars/assets/19206978/468f8b6f-57ae-4c62-b94d-317c11093b12)
 
+### 1. Demo 
+
+- [Interactive Demo](https://ethernity.app/demo/)
+- [Demo Video](https://example.com)
 
 ### 2. Problem Statement
 In the gaming and web app industries, NPCs (non-player characters) often lack dynamic interactions, limiting player engagement and immersion. Research indicates that 99% of gamers believe that advanced AI in NPCs could significantly enhance their gaming experience, influencing both their time spent and willingness to pay more for intelligent NPC interactions.
@@ -19,12 +23,12 @@ Source: [Inworld study on the future of NPCs finds 99% of gamers think AI will e
   - Players can interact with NPCs using text or voice, benefitting from intelligent response suggestions.
   - Interactions are saved within a user-friendly chat UI, reminiscent of modern AI chatbots.
 
-![screenshot-1](https://github.com/andreykobal/google-ai-avatars/assets/19206978/009b63e3-d424-4b31-bd7b-a79adc2bd0b6)
+![ezgif-5-075e0129c0](https://github.com/andreykobal/google-ai-avatars/assets/19206978/1c24363b-35a7-42ef-8755-440bf8033907)
 
 - **NPC <> NPC Interaction**:
   - Two NPCs can autonomously generate dialogues on set topics, mimicking real human conversations, complete with subtitles.
 
-![screenshot-2](https://github.com/andreykobal/google-ai-avatars/assets/19206978/ee81cccf-3c15-4f67-9b72-42e3c4cb9a8c)
+![ezgif-5-f570816c8c](https://github.com/andreykobal/google-ai-avatars/assets/19206978/bdc26488-c4b0-4bc1-ad97-0a2ed8df0785)
 
 ### 4. Technologies Used
 - **Vertex AI API**: Utilizes language processing, text-to-speech, and speech recognition.
