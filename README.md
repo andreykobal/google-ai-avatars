@@ -1,4 +1,4 @@
-# Google AI Avatars: Revolutionizing NPC Interactions in Gaming and Web Apps
+ # Google AI Avatars: Revolutionizing NPC Interactions in Gaming and Web Apps
 
 ### Executive Summary
 **Google AI Avatars: Next-Gen AI-Powered NPCs**
@@ -191,8 +191,10 @@ Deploy the Flask application using your preferred method:
 The **Google AI Avatars SDK** is designed to empower developers to create more engaging and realistic interactions in games and web apps. 
 
 
-### 12. Visuals and Links (Optional)
-- [Interactive Demo](#)
-- [GitHub Repository](#)
-- [Project Presentation](#)
-
+### 12. Resources
+**📌 [Pitch Deck](https://docsend.com/view/kmasga75mhhgiqcc)**
+**📹 [Game Trailer](https://www.youtube.com/watch?v=QkMLtXndIiE)**
+**🌐 [Website](https://ethernity.app/)**
+**👾 [Discord](https://discord.com/invite/5ze32SFmmS)** 
+**🐦 [Twitter](https://twitter.com/0xETHERNITY)**
+**📜 [Medium](https://medium.com/@0xETHERNITY)**
