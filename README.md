@@ -13,10 +13,12 @@ In the gaming and web app industries, NPCs (non-player characters) often lack dy
 - **User <> NPC Interaction**:
   - Players can interact with NPCs using text or voice, benefitting from intelligent response suggestions.
   - Interactions are saved within a user-friendly chat UI, reminiscent of modern AI chatbots.
+
 ![screencapture-localhost-50314-2024-04-15-04_02_44](https://github.com/andreykobal/google-ai-avatars/assets/19206978/c8c20184-5ee6-4d51-af18-3db05b1ab143)
 
 - **NPC <> NPC Interaction**:
   - Two NPCs can autonomously generate dialogues on set topics, mimicking real human conversations, complete with subtitles.
+
 ![screencapture-localhost-50314-2024-04-15-04_06_21](https://github.com/andreykobal/google-ai-avatars/assets/19206978/5eebd640-9e94-436e-8995-5ec75d22c400)
 
 ### 4. Technologies Used
