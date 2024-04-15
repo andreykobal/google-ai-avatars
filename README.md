@@ -10,14 +10,14 @@ In the gaming and web app industries, NPCs (non-player characters) often lack dy
 **Google AI Avatars** is an SDK designed to integrate cutting-edge AI functionalities with NPCs in games and web apps, providing highly interactive and realistic experiences. This solution is engineered using Unity for the client-side and Google Vertex AI models on the backend to facilitate rich interactions through both text and voice.
 
 #### Modes of Interaction
-![screencapture-localhost-50314-2024-04-15-04_02_44](https://github.com/andreykobal/google-ai-avatars/assets/19206978/c8c20184-5ee6-4d51-af18-3db05b1ab143)
 - **User <> NPC Interaction**:
   - Players can interact with NPCs using text or voice, benefitting from intelligent response suggestions.
   - Interactions are saved within a user-friendly chat UI, reminiscent of modern AI chatbots.
+![screencapture-localhost-50314-2024-04-15-04_02_44](https://github.com/andreykobal/google-ai-avatars/assets/19206978/c8c20184-5ee6-4d51-af18-3db05b1ab143)
 
-![screencapture-localhost-50314-2024-04-15-04_06_21](https://github.com/andreykobal/google-ai-avatars/assets/19206978/5eebd640-9e94-436e-8995-5ec75d22c400)
 - **NPC <> NPC Interaction**:
   - Two NPCs can autonomously generate dialogues on set topics, mimicking real human conversations, complete with subtitles.
+![screencapture-localhost-50314-2024-04-15-04_06_21](https://github.com/andreykobal/google-ai-avatars/assets/19206978/5eebd640-9e94-436e-8995-5ec75d22c400)
 
 ### 4. Technologies Used
 - **Vertex AI API**: Utilizes language processing, text-to-speech, and speech recognition.
