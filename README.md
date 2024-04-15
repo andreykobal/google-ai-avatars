@@ -186,9 +186,7 @@ Deploy the Flask application using your preferred method:
 
 
 ### 11. Conclusion
-**Google AI Avatars** stands at the forefront of a revolution in digital interaction within the gaming and web app industries. By bridging the gap between technology and user experience, this project paves the way for a new era of engagement where every interaction feels uniquely personal and profoundly engaging.
-
-The **Google AI Avatars SDK** is designed to empower developers to create more engaging and realistic interactions in games and web apps. 
+**Google AI Avatars** stands at the forefront of a revolution in digital interaction within the gaming and web app industries. By bridging the gap between technology and user experience, this project paves the way for a new era of engagement where every interaction feels uniquely personal and profoundly engaging. The **SDK** is designed to empower developers to create more engaging and realistic interactions in games and web apps. 
 
 
 ### 12. Resources
