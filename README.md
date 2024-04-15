@@ -117,6 +117,8 @@ Located in `/unity-project` directory, this project contains several scripts tha
 
 ### Scripts and Their Functions
 
+`/unity-project/Assets/Scripts`
+
 - **`AudioAnimationController.cs`**: Manages animation of avatars based on audio.
 - **`AudioResampler.cs`**: Resamples WAV files to ensure compatibility.
 - **`AvatarSelector.uss`**: Manages styles for the UI elements in the game.
