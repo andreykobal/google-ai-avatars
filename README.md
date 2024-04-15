@@ -3,6 +3,9 @@
 ### 1. Project Title
 **Google AI Avatars: Next-Gen AI-Powered NPCs**
 
+![ai avatars](https://github.com/andreykobal/google-ai-avatars/assets/19206978/468f8b6f-57ae-4c62-b94d-317c11093b12)
+
+
 ### 2. Problem Statement
 In the gaming and web app industries, NPCs (non-player characters) often lack dynamic interactions, limiting player engagement and immersion. Research indicates that 99% of gamers believe that advanced AI in NPCs could significantly enhance their gaming experience, influencing both their time spent and willingness to pay more for intelligent NPC interactions.
 
