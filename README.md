@@ -1,7 +1,7 @@
 # Google AI Avatars: Revolutionizing NPC Interactions in Gaming and Web Apps
 
 ## Executive Summary
-### Google AI Avatars: Next-Gen AI-Powered NPCs**
+### Google AI Avatars: Next-Gen AI-Powered NPCs
 
 Empowering the future of interactive gaming and web applications, the **Google AI Avatars SDK** revolutionizes NPC interactions by leveraging advanced AI technologies. This innovative SDK enhances player immersion by enabling dynamic, realistic interactions with NPCs through text and voice, powered by Unity and Google Vertex AI. Addressing a widespread demand among gamers for intelligent NPC behavior, Google AI Avatars opens new possibilities for game narrative and user engagement across platforms
 
