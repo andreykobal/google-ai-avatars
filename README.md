@@ -192,9 +192,9 @@ The **Google AI Avatars SDK** is designed to empower developers to create more e
 
 
 ### 12. Resources
-**📌 [Pitch Deck](https://docsend.com/view/kmasga75mhhgiqcc)**
-**📹 [Game Trailer](https://www.youtube.com/watch?v=QkMLtXndIiE)**
-**🌐 [Website](https://ethernity.app/)**
-**👾 [Discord](https://discord.com/invite/5ze32SFmmS)** 
-**🐦 [Twitter](https://twitter.com/0xETHERNITY)**
-**📜 [Medium](https://medium.com/@0xETHERNITY)**
+- **📌 [Pitch Deck](https://docsend.com/view/kmasga75mhhgiqcc)**
+- **📹 [Game Trailer](https://www.youtube.com/watch?v=QkMLtXndIiE)**
+- **🌐 [Website](https://ethernity.app/)**
+- **👾 [Discord](https://discord.com/invite/5ze32SFmmS)** 
+- **🐦 [Twitter](https://twitter.com/0xETHERNITY)**
+- **📜 [Medium](https://medium.com/@0xETHERNITY)**
