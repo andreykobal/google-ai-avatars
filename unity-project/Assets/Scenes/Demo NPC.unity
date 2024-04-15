@@ -3719,6 +3719,51 @@ MonoBehaviour:
   teethRenderer: {fileID: 252071302}
   blendShapePrefixHead: 
   blendShapePrefixTeeth: 
+--- !u!1 &1383885569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1383885571}
+  - component: {fileID: 1383885570}
+  m_Layer: 0
+  m_Name: Subtitle Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1383885570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383885569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb05e7ef2a514acd83eddb5be60e3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 1000093496}
+--- !u!4 &1383885571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383885569}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7972354, y: -3.0345082, z: -4.232544}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1538485016 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7419278474486152629, guid: 97d2bbe7b238b93438cc5b43acc85130,
@@ -3869,8 +3914,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npc1: {fileID: 194312968}
   npc2: {fileID: 961547541}
+  subtitleDisplayManager: {fileID: 1383885570}
   NPC1: Ava
   NPC2: Kai
+  Npc1Bio: Ava Marshall, a 28-year-old former cyber security expert, turns her hacking
+    skills into survival tactics in the virtual battlegrounds of Ethernity. The year
+    is 2052, the world is in chaos because of environmental disasters and greed.
+    To distract people and control the economy, the richest 1% create a virtual game
+    called Ethernity. In this AI-driven open-world PvPvE shooter game, players compete
+    on a mysterious island for valuable blockchain tokens called ETNT, which are
+    super important in the new world economy. The island's challenges are designed
+    by the rich elite, each adding their own twist based on their interests, like
+    tech, oil, or crime. The game is full of different challenges like fighting zombies,
+    surviving against robots, or finding treasures, and it changes all the time.
+    The host of the game is a friendly AI robot, but there is a big surprise about
+    him at the end. Players fight hard for the chance to win big and become famous
+    in this high-stakes virtual world.
+  Npc2Bio: Kai Smith is a 30-year-old professional mercenary who now uses his skills
+    to survive in the virtual battlegrounds of Ethernity.
 --- !u!4 &1835283766
 Transform:
   m_ObjectHideFlags: 0
@@ -4195,3 +4256,4 @@ SceneRoots:
   - {fileID: 504459838}
   - {fileID: 214182337}
   - {fileID: 1000093497}
+  - {fileID: 1383885571}

@@ -58,6 +58,7 @@ public class TextGeneratorClient : MonoBehaviour
         startButton = root.Q<VisualElement>("StartButton"); // Find the StartButton element
         bodyElement = root.Q<VisualElement>("Body"); // Find the Body element
         suggestionsContainer = root.Q<VisualElement>("Suggestions");
+        Button nextButton = root.Q<Button>("NextScene");
 
 
 
@@ -66,9 +67,11 @@ public class TextGeneratorClient : MonoBehaviour
         if (!isStartClicked) {
             bodyElement.style.display = DisplayStyle.None;
             startButton.style.display = DisplayStyle.Flex; // Show StartButton
+            nextButton.style.display = DisplayStyle.None;
         } else {
             bodyElement.style.display = DisplayStyle.Flex;
             startButton.style.display = DisplayStyle.None; // Hide StartButton
+            nextButton.style.display = DisplayStyle.Flex;
 
             StartCoroutine(SendPromptAndGetResponse("Hi! In one line introduce yourself and welcome the player to the game world."));
 
@@ -80,6 +83,7 @@ public class TextGeneratorClient : MonoBehaviour
         {
             startButton.style.display = DisplayStyle.None; // Hide StartButton
             bodyElement.style.display = DisplayStyle.Flex; // Show Body element
+            nextButton.style.display = DisplayStyle.Flex;
 
             isStartClicked = true;
 

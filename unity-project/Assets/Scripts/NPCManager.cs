@@ -9,6 +9,9 @@ public class NPCManager : MonoBehaviour
     [SerializeField] private TextToSpeechClient npc1;
     [SerializeField] private TextToSpeechClient npc2;
 
+    [SerializeField] private SubtitleDisplayManager subtitleDisplayManager;
+
+
     private string conversationContext = "";
     private const int maxContextLength = 4096;
     private const string apiUrl = "https://ailandtestnetai.top/generate";
@@ -91,7 +94,10 @@ public class NPCManager : MonoBehaviour
 
                 UpdateConversationContext(responseWithPlaceholder);
 
-                
+                // Before synthesizing speech, show subtitles
+                subtitleDisplayManager.DisplaySubtitles(responseWithPlaceholder);
+
+
                 //Debug.Log("Synthesizing speech for: " + responseWithPlaceholder + " Gender: " + gender);
                 speaker.CallSynthesizeSpeech(responseWithPlaceholder, gender);
 
