@@ -16,12 +16,12 @@ Source: [Inworld study on the future of NPCs finds 99% of gamers think AI will e
   - Players can interact with NPCs using text or voice, benefitting from intelligent response suggestions.
   - Interactions are saved within a user-friendly chat UI, reminiscent of modern AI chatbots.
 
-![screencapture-localhost-50314-2024-04-15-04_02_44](https://github.com/andreykobal/google-ai-avatars/assets/19206978/c8c20184-5ee6-4d51-af18-3db05b1ab143)
+![screenshot-1](https://github.com/andreykobal/google-ai-avatars/assets/19206978/009b63e3-d424-4b31-bd7b-a79adc2bd0b6)
 
 - **NPC <> NPC Interaction**:
   - Two NPCs can autonomously generate dialogues on set topics, mimicking real human conversations, complete with subtitles.
 
-![screencapture-localhost-50314-2024-04-15-04_06_21](https://github.com/andreykobal/google-ai-avatars/assets/19206978/5eebd640-9e94-436e-8995-5ec75d22c400)
+![screenshot-2](https://github.com/andreykobal/google-ai-avatars/assets/19206978/ee81cccf-3c15-4f67-9b72-42e3c4cb9a8c)
 
 ### 4. Technologies Used
 - **Vertex AI API**: Utilizes language processing, text-to-speech, and speech recognition.
