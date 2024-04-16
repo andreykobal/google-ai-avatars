@@ -59,7 +59,7 @@ We have successfully developed a versatile SDK that not only enriches user exper
 ### 8. Future Work
 Looking forward, we plan to integrate this technology into "Ethernity," our upcoming AI-powered PvPvE shooter game. We aim to develop open-world and dynamic game modes that utilize "Gemini AI Pro," an advanced version of our SDK that allows NPCs to remember players' actions and maintain long-term chat histories, thereby enhancing personalized gameplay experiences.
 
-# 9. SDK Documentation
+# 9. Google AI Avatars SDK Documentation
 
 This is a comprehensive guide for integrating and utilizing the Google AI Avatars SDK. This SDK facilitates the creation of next-gen AI-powered NPCs (non-player characters) for games and web applications, providing realistic interactions through advanced AI technologies.
 
