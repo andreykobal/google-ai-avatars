@@ -56,7 +56,7 @@ def generate():
         return jsonify({"error": "Failed to get access token"}), 500
 
     # Set the URL and headers for the API request
-    api_url = "https://us-central1-aiplatform.googleapis.com/v1/projects/ailand-testnet/locations/us-central1/publishers/google/models/text-bison:predict"
+    api_url = "https://us-central1-aiplatform.googleapis.com/v1/projects/[YOUR_PROJECT_NAME]/locations/us-central1/publishers/google/models/text-bison:predict"
     headers = {
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json; charset=utf-8"
