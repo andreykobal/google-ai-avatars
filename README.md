@@ -10,7 +10,7 @@ Empowering the future of interactive gaming and web applications, the **Google A
 ### 1. Demo 
 
 - #### [🎮 Interactive Demo](https://ethernity.app/demo/)
-- #### [📹 Demo Video]([https://example.com](https://www.youtube.com/watch?v=kiX6B7aZ1e0))
+- #### [📹 Demo Video](https://example.com](https://www.youtube.com/watch?v=kiX6B7aZ1e0)
 
 ### 2. Problem Statement
 
