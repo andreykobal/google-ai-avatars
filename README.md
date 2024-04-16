@@ -60,6 +60,9 @@ Looking forward, we plan to integrate this technology into "Ethernity," our upco
 
 This is a comprehensive guide for integrating and utilizing the Google AI Avatars SDK. This SDK facilitates the creation of next-gen AI-powered NPCs (non-player characters) for games and web applications, providing realistic interactions through advanced AI technologies.
 
+<img width="1335" alt="Google AI Avatars" src="https://github.com/andreykobal/google-ai-avatars/assets/19206978/53aa1854-63d4-44aa-85b6-ff69f05d626a">
+
+
 ## Getting Started
 
 ### Initial Setup
